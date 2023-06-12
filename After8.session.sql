@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS items(
     notes VARCHAR(500)
 );
 CREATE TABLE IF NOT EXISTS laptops(
-    laptop_number INT AUTO_INCREMENT PRIMARY KEY,
+    laptop_number INT PRIMARY KEY,
     serial_number VARCHAR(150),
     model VARCHAR(255),
     status VARCHAR(150),

@@ -2,6 +2,7 @@ import  express  from 'express';
 import userRouter from './routes/users.routes.js'
 import cors from "cors";
 import { connection } from './mysql/connect.js';
+import itemRouter from './routes/items.routes.js';
 
 
 
@@ -24,6 +25,7 @@ app.get('/db', (req, res) => {
 })
 
 app.use('/users', userRouter);
+app.use('/items', itemRouter);
 
 //error function
 app.use(function (err, req, res, next) {
