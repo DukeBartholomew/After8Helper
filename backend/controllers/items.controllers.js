@@ -2,6 +2,7 @@ import {
   getAllItems,
   createItem,
   deleteItemByName,
+  editQuantity,
 } from "../services/items.services.js";
 
 async function getAllItemsHandler(req, res) {
@@ -37,4 +38,23 @@ async function deleteItemByNameHandler(req, res) {
   }
 }
 
-export { getAllItemsHandler, createItemHandler, deleteItemByNameHandler };
+async function editQuantityHandler(req, res) {
+  try {
+    const rowsUpdated = await editQuantity(
+      req.params.item_name,
+      req.body.quantity,
+    );
+    console.log(rowsUpdated);
+    res.status(200).json(rowsUpdated);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ error: error });
+  }
+}
+
+export {
+  getAllItemsHandler,
+  createItemHandler,
+  deleteItemByNameHandler,
+  editQuantityHandler,
+};
