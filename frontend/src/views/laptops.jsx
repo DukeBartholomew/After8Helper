@@ -5,7 +5,7 @@ const Laptops = () => {
   return (
     <>
       <HeaderMegaMenu />
-      <div>Laptops</div>
+      <h1>Laptops</h1>
     </>
   );
 };

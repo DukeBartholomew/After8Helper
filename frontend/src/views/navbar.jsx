@@ -159,7 +159,7 @@ export function HeaderMegaMenu() {
 
 
           <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-            <a className={classes.link} onClick={() => navigate('/')}>
+            <a style={{fontSize: 15}} className={classes.link} onClick={() => navigate('/')}>
               Inventory
             </a>
             {/* <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
@@ -207,10 +207,10 @@ export function HeaderMegaMenu() {
                 </div>
               </HoverCard.Dropdown>
             </HoverCard> */}
-            <a onClick={() => navigate('/laptops')} className={classes.link}>
+            <a style={{fontSize: 15}} onClick={() => navigate('/laptops')} className={classes.link}>
               Laptops
             </a>
-            <a onClick={() => navigate('/announcements')} className={classes.link}>
+            <a style={{fontSize: 15}} onClick={() => navigate('/announcements')} className={classes.link}>
               Announcements
             </a>
           </Group>

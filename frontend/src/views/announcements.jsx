@@ -5,7 +5,7 @@ const Announcements = () => {
   return (
     <>
       <HeaderMegaMenu />
-      <div>Announcements</div>
+      <h1>Announcements</h1>
     </>
   );
 };
