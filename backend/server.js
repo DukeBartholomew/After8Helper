@@ -3,6 +3,7 @@ import userRouter from './routes/users.routes.js'
 import cors from "cors";
 import { connection } from './mysql/connect.js';
 import itemRouter from './routes/items.routes.js';
+import laptopRouter from './routes/laptops.routes.js';
 
 
 
@@ -26,6 +27,7 @@ app.get('/db', (req, res) => {
 
 app.use('/users', userRouter);
 app.use('/items', itemRouter);
+app.use('/laptops', laptopRouter);
 
 //error function
 app.use(function (err, req, res, next) {

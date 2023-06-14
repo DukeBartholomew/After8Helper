@@ -9,18 +9,14 @@ CREATE TABLE IF NOT EXISTS items(
     item_id INT AUTO_INCREMENT PRIMARY KEY,
     item_name VARCHAR(150) NOT NULL,
     quantity VARCHAR(150) NOT NULL,
-    notes VARCHAR(500),
-    userId INT NOT NULL,
-    FOREIGN KEY (userId) REFERENCES users(user_id)
+    notes VARCHAR(500)
 );
 CREATE TABLE IF NOT EXISTS laptops(
     laptop_number INT PRIMARY KEY,
     serial_number VARCHAR(150),
     model VARCHAR(255),
     status VARCHAR(150),
-    notes VARCHAR(500),
-    userId INT NOT NULL,
-    FOREIGN KEY (userId) REFERENCES users(user_id)
+    notes VARCHAR(500)
 
 );
 CREATE TABLE IF NOT EXISTS announcements(
@@ -29,9 +25,7 @@ CREATE TABLE IF NOT EXISTS announcements(
     situation VARCHAR(500) NOT NULL,
     end_result VARCHAR(500),
     completed BOOLEAN NOT NULL DEFAULT FALSE,
-    urgency VARCHAR(50),
-    userId INT NOT NULL,
-    FOREIGN KEY (userId) REFERENCES users(user_id)
+    urgency VARCHAR(50)
 
 );
 INSERT INTO users (_username, _password) VALUE("Duke B", "Password");

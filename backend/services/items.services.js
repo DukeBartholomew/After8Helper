@@ -12,14 +12,13 @@ async function getAllItems() {
 }
 
 async function createItem(item) {
-  const { item_name, quantity, notes, userId } = item;
-  const query = `INSERT INTO items(item_name, quantity, notes, userId) VALUES(?, ?, ?, ?)`;
+  const { item_name, quantity, notes } = item;
+  const query = `INSERT INTO items(item_name, quantity, notes) VALUES(?, ?, ?)`;
   try {
     const results = await queryPromise(query, [
       item_name,
       quantity,
       notes,
-      userId,
     ]);
     const item_id = results.insertId;
     return {
@@ -27,7 +26,6 @@ async function createItem(item) {
       item_name,
       quantity,
       notes,
-      userId,
     };
   } catch (err) {
     console.log("Error in createItem:", err);
@@ -42,7 +40,7 @@ async function deleteItemByName(item_name) {
     console.log(results); // Log the results object to the console for debugging
     return results.affectedRows;
   } catch (err) {
-    console.log("Error in deleteUserByName:", err);
+    console.log("Error in deleteItemByName:", err);
     return 0; // Return 0 or an appropriate value to indicate failure
   }
 }
