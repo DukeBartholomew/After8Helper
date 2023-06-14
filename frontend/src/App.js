@@ -1,5 +1,11 @@
 import "./App.css";
 import axios from "axios";
+import {Routes, Route} from "react-router-dom";
+import Inventory from "./views/inventory.jsx";
+import { Font } from "./components/font";
+import Laptops from "./views/laptops.jsx";
+import Announcements from "./views/announcements.jsx";
+
 
 function App() {
   const url = "http://localhost:8000";
@@ -16,9 +22,12 @@ function App() {
 
   return (
     <div className="App">
-      <h2>Hello</h2>
-      <h1>Hello World</h1>
-      <h1>Hello World</h1>
+      <Font/>
+      <Routes>
+        <Route path="/" element={<Inventory/>}/>
+        <Route path="/laptops" element={<Laptops/>}/>
+        <Route path="/announcements" element={<Announcements/>}/>
+      </Routes>
       <button type="button" onClick={checkAPI}>
         Check API
       </button>

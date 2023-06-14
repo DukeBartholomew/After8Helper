@@ -1,4 +1,9 @@
 .App {
   text-align: center;
-  color: blue;
+}
+
+* {
+  font-family: 'Outfit', sans-serif;
+  font-family: 'Playfair Display', serif;
+  font-family: 'Raleway', sans-serif;
 }
