@@ -210,6 +210,9 @@ export function HeaderMegaMenu() {
             <a style={{fontSize: 15}} onClick={() => navigate('/laptops')} className={classes.link}>
               Laptops
             </a>
+            <a style={{fontSize: 15}} onClick={() => navigate('/headphones')} className={classes.link}>
+              Headphones
+            </a>
             <a style={{fontSize: 15}} onClick={() => navigate('/announcements')} className={classes.link}>
               Announcements
             </a>
@@ -238,7 +241,7 @@ export function HeaderMegaMenu() {
         <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
           <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-          <a href="#" className={classes.link}>
+          <a href="#" className={classes.link} onClick={() => navigate('/')}>
             Inventory
           </a>
           {/* <UnstyledButton className={classes.link} onClick={toggleLinks}>
@@ -250,10 +253,14 @@ export function HeaderMegaMenu() {
             </Center>
           </UnstyledButton>
           <Collapse in={linksOpened}>{links}</Collapse> */}
-          <a href="#" className={classes.link}>
+          <a href="#" className={classes.link} onClick={() => navigate('/laptops')}>
             Laptops
           </a>
-          <a href="#" className={classes.link}>
+          <a href="#" className={classes.link} onClick={() => navigate('/headphones')}>
+            Headphones
+          </a>
+          
+          <a href="#" className={classes.link} onClick={() => navigate('/announcements')}>
             Announcements
           </a>
 

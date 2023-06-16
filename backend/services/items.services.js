@@ -45,9 +45,9 @@ async function deleteItemByName(item_name) {
   }
 }
 
-async function editQuantity(item_name, quantity) {
-  const query = `UPDATE items SET quantity = ? WHERE item_name = ?`;
-  const results = await queryPromise(query, [quantity, item_name]);
+async function editQuantity(item_name, quantity, notes) {
+  const query = `UPDATE items SET quantity = ?, notes = ? WHERE item_name = ?`;
+  const results = await queryPromise(query, [quantity, notes, item_name]);
   if (results && results.affectedRows !== undefined) {
     return results.affectedRows;
   } else {

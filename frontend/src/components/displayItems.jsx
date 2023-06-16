@@ -3,28 +3,56 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const DisplayItems = (props) => {
-    const url = "http://localhost:8000";
+  const url = "http://localhost:8000";
 
-    const handleDelete = (item_name) => {
-        
-        if(window.confirm("Are you sure you want to delete this item?")) {
-          axios
-          .delete(url + "/items/" + item_name)
-          .then((res) => {
-            console.log(res);
-            window.location.reload();
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        }
-      };
+ 
+
+  const handleDelete = (item_name) => {
+    if (window.confirm("Are you sure you want to delete this item?")) {
+      axios
+        .delete(url + "/items/" + item_name)
+        .then((res) => {
+          console.log(res);
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  const handleEdit = (item_name, quantity, notes) => {
+    const newQuantityAmount = prompt(
+      "Please enter the new quantity: ",
+      quantity
+    );
+    const newNotes = prompt(
+        "Type to edit notes. Otherwise, click OK",
+        notes
+    );
+    if (newQuantityAmount) {
+      axios
+        .put(url + "/items/" + item_name, {
+          quantity: newQuantityAmount,
+          notes: newNotes,
+        })
+        .then((res) => {
+          console.log("Quantity Succesfully Updated");
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
 
   const display = (props) => {
     const { items } = props;
     console.log(items);
     if (items.length > 0) {
-      const sortedItems = items.sort((a, b) => a.item_name.localeCompare(b.item_name));
+      const sortedItems = items.sort((a, b) =>
+        a.item_name.localeCompare(b.item_name)
+      );
       const rows = sortedItems.map((item) => (
         <tr key={item.item_id}>
           <td>
@@ -39,12 +67,19 @@ const DisplayItems = (props) => {
           <td>
             <Button
               variant="gradient"
-              gradient={{ from: "teal", to: "lime", deg: 105 }}
-              style={{marginBottom:"2px"}}
+              gradient={{ from: "violet", to: "teal", deg: 105 }}
+              style={{ marginBottom: "2px", marginRight:"2px" }}
+              onClick={() => {
+                handleEdit(item.item_name, item.quantity, item.notes);
+              }}
             >
               Edit
             </Button>
-            <Button variant="gradient" gradient={{ from: "orange", to: "red" }} onClick={() => handleDelete(item.item_name)}>
+            <Button
+              variant="gradient"
+              gradient={{ from: "orange", to: "red" }}
+              onClick={() => handleDelete(item.item_name)}
+            >
               Delete
             </Button>
           </td>

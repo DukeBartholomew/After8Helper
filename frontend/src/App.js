@@ -5,6 +5,7 @@ import Inventory from "./views/inventory.jsx";
 import { Font } from "./components/font";
 import Laptops from "./views/laptops.jsx";
 import Announcements from "./views/announcements.jsx";
+import Headphones from "./views/headphones.jsx";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Inventory/>}/>
         <Route path="/laptops" element={<Laptops/>}/>
+        <Route path="/headphones" element={<Headphones/>}/>
         <Route path="/announcements" element={<Announcements/>}/>
       </Routes>
       <button type="button" onClick={checkAPI}>

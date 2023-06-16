@@ -43,6 +43,7 @@ async function editQuantityHandler(req, res) {
     const rowsUpdated = await editQuantity(
       req.params.item_name,
       req.body.quantity,
+      req.body.notes,
     );
     console.log(rowsUpdated);
     res.status(200).json(rowsUpdated);
