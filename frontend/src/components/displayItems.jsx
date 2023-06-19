@@ -1,11 +1,10 @@
-import { Button } from "@mantine/core";
+import { Button, Select } from "@mantine/core";
 import React, { useState } from "react";
 import axios from "axios";
 
 const DisplayItems = (props) => {
   const url = "http://localhost:8000";
 
- 
 
   const handleDelete = (item_name) => {
     if (window.confirm("Are you sure you want to delete this item?")) {
@@ -26,10 +25,7 @@ const DisplayItems = (props) => {
       "Please enter the new quantity: ",
       quantity
     );
-    const newNotes = prompt(
-        "Type to edit notes. Otherwise, click OK",
-        notes
-    );
+    const newNotes = prompt("Type to edit notes. Otherwise, click OK", notes);
     if (newQuantityAmount) {
       axios
         .put(url + "/items/" + item_name, {
@@ -48,12 +44,24 @@ const DisplayItems = (props) => {
 
   const display = (props) => {
     const { items } = props;
+
+    if (!items || items.length === 0) {
+        return (
+          <tbody>
+            <tr>
+              <td colSpan="4">
+                <h1>No Items In Inventory</h1>
+              </td>
+            </tr>
+          </tbody>
+        );
+      }
+
+
     console.log(items);
+   
     if (items.length > 0) {
-      const sortedItems = items.sort((a, b) =>
-        a.item_name.localeCompare(b.item_name)
-      );
-      const rows = sortedItems.map((item) => (
+      const rows = items.map((item) => (
         <tr key={item.item_id}>
           <td>
             <h3>{item.item_name}</h3>
@@ -68,7 +76,7 @@ const DisplayItems = (props) => {
             <Button
               variant="gradient"
               gradient={{ from: "violet", to: "teal", deg: 105 }}
-              style={{ marginBottom: "2px", marginRight:"2px" }}
+              style={{ marginBottom: "2px", marginRight: "2px" }}
               onClick={() => {
                 handleEdit(item.item_name, item.quantity, item.notes);
               }}
@@ -85,18 +93,12 @@ const DisplayItems = (props) => {
           </td>
         </tr>
       ));
-      return <tbody>{rows}</tbody>;
-    } else {
       return (
-        <tbody>
-          <tr>
-            <td colSpan="4">
-              <h1>No Items In Inventory</h1>
-            </td>
-          </tr>
-        </tbody>
+        <>
+          <tbody>{rows}</tbody>
+        </>
       );
-    }
+    } 
   };
 
   return <>{display(props)}</>;

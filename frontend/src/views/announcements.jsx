@@ -5,7 +5,7 @@ const Announcements = () => {
   return (
     <>
       <HeaderMegaMenu />
-      <h1>Announcements</h1>
+      <h1 style={{ fontWeight: "bold", fontSize:"40px" }}>Announcements</h1>
     </>
   );
 };

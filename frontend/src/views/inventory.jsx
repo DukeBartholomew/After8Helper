@@ -10,24 +10,36 @@ const Inventory = () => {
   const [itemName, setItemName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [notes, setNotes] = useState("");
+  const [sortBy, setSortBy] = useState("item_name"); // Default sort by item name
 
   const getItems = () => {
-    let allItems = [];
     axios
       .get(url + "/items")
       .then((res) => {
-        allItems = res.data;
-        setItems(allItems);
+        let sortedItems = [...res.data];
+        if (sortBy === "-item_name") {
+          sortedItems.sort((a, b) => b.item_name.localeCompare(a.item_name));
+        } else if (sortBy === "quantity") {
+          sortedItems.sort((a, b) => a.quantity - b.quantity);
+        } else if (sortBy === "-quantity") {
+          sortedItems.sort((a, b) => b.quantity - a.quantity);
+        }
+        setItems(sortedItems);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  
 
-  const [items, setItems] = useState("");
   useEffect(() => {
     getItems();
-  }, []);
+  }, [sortBy]);
+
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    getItems();
+  }, [sortBy]);
 
   const handleItemNameChange = (event) => {
     setItemName(event.target.value);
@@ -39,6 +51,10 @@ const Inventory = () => {
 
   const handleNotesChange = (event) => {
     setNotes(event.target.value);
+  };
+
+  const handleSortByChange = (event) => {
+    setSortBy(event.target.value);
   };
 
   const handleSubmit = () => {
@@ -68,8 +84,10 @@ const Inventory = () => {
   return (
     <>
       <HeaderMegaMenu />
-      <h1 style={{ fontWeight: "bold" }}>Inventory</h1>
-      <form>
+      <h1 style={{ fontWeight: "bold", fontSize:"40px" }}>Inventory</h1>
+      
+
+      <form style={{border: "5px"}}>
         <div className="create-item">
           <label htmlFor="item_name" style={{ fontWeight: "bold" }}>
             Item Name:{" "}
@@ -130,6 +148,15 @@ const Inventory = () => {
           Add New Item
         </Button>
       </form>
+      <div style={{marginTop:"25px"}}>
+        <label style={{fontWeight:"bold"}}>Sort By: </label>
+      <select value={sortBy} onChange={handleSortByChange} style={{marginBottom:"10px"}}>
+        <option value="item_name">Item Name (A to Z)</option>
+        <option value="-item_name">Item Name (Z to A)</option>
+        <option value="quantity">Quantity (Least to Greatest)</option>
+        <option value="-quantity">Quantity (Greatest to Least)</option>
+      </select>
+      </div>
       <div
         style={{
           marginLeft: "10px",

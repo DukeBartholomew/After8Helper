@@ -5,7 +5,7 @@ const Headphones = () => {
   return (
     <>
       <HeaderMegaMenu />
-      <h1>Headphones</h1>
+      <h1 style={{ fontWeight: "bold", fontSize:"40px" }}>Headphones</h1>
     </>
   );
 };

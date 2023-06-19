@@ -87,7 +87,7 @@ const Laptops = () => {
   return (
     <>
       <HeaderMegaMenu />
-      <h1 style={{ fontWeight: "bold" }}>Laptops</h1>
+      <h1 style={{ fontWeight: "bold", fontSize:"40px" }}>Laptops</h1>
       <Container>
         <form>
           <label htmlFor="laptop_number" style={{ fontWeight: "bold" }}>
