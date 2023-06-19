@@ -37,27 +37,32 @@ const Inventory = () => {
     setQuantity(event.target.value);
   };
 
-  const handleNotesChange =(event) => {
+  const handleNotesChange = (event) => {
     setNotes(event.target.value);
   };
 
   const handleSubmit = () => {
+    if (itemName && quantity) {
+      // Check if required fields are not empty
+      const requestData = {
+        item_name: itemName,
+        quantity: quantity,
+        notes: notes,
+      };
 
-
-    const requestData = {
-      item_name: itemName,
-      quantity: quantity,
-      notes: notes,
-    };
-
-    axios
-    .post(url + "/items", requestData)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+      axios
+        .post(url + "/items", requestData)
+        .then((res) => {
+          console.log(res);
+          // Clear input fields after successful submission
+          setItemName("");
+          setQuantity("");
+          setNotes("");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
@@ -66,7 +71,9 @@ const Inventory = () => {
       <h1 style={{ fontWeight: "bold" }}>Inventory</h1>
       <form>
         <div className="create-item">
-          <label htmlFor="item_name" style={{fontWeight:"bold"}}>Item Name: </label>
+          <label htmlFor="item_name" style={{ fontWeight: "bold" }}>
+            Item Name:{" "}
+          </label>
           <input
             type="text"
             id="item_name"
@@ -74,9 +81,17 @@ const Inventory = () => {
             required
             value={itemName}
             onChange={handleItemNameChange}
-            style={{width: "40%", marginBottom:"10px", borderRadius: "5px", borderWidth:"1.2px"}}
+            style={{
+              width: "40%",
+              marginBottom: "10px",
+              borderRadius: "5px",
+              borderWidth: "1.2px",
+            }}
           />
-          <label htmlFor="quantity" style={{fontWeight:"bold"}}>  Quantity: </label>
+          <label htmlFor="quantity" style={{ fontWeight: "bold" }}>
+            {" "}
+            Quantity:{" "}
+          </label>
           <input
             type="text"
             id="quantity"
@@ -84,22 +99,36 @@ const Inventory = () => {
             required
             value={quantity}
             onChange={handleQuantityChange}
-            style={{width: "10%", borderRadius: "5px", borderWidth:"1.2px"}}
-
+            style={{ width: "10%", borderRadius: "5px", borderWidth: "1.2px" }}
           />
-    
+
           <br></br>
-          <label htmlFor="notes" style={{fontWeight:"bold"}}>Notes: </label>
-          <input 
-          type="text"
-          id="notes"
-          name="notes"
-          value={notes}
-          onChange={handleNotesChange}
-          style={{marginTop: "10px", width:"80%", borderRadius: "5px", borderWidth:"1.2px"}}
+          <label htmlFor="notes" style={{ fontWeight: "bold" }}>
+            Notes:{" "}
+          </label>
+          <input
+            type="text"
+            id="notes"
+            name="notes"
+            value={notes}
+            onChange={handleNotesChange}
+            style={{
+              marginTop: "10px",
+              width: "80%",
+              borderRadius: "5px",
+              borderWidth: "1.2px",
+            }}
           />
         </div>
-        <Button type="submit" onClick={() => handleSubmit()} style={{marginTop: "10px", marginBottom: "10px"}} variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }}>Add New Item</Button>
+        <Button
+          type="submit"
+          onClick={() => handleSubmit()}
+          style={{ marginTop: "10px", marginBottom: "10px" }}
+          variant="gradient"
+          gradient={{ from: "teal", to: "lime", deg: 105 }}
+        >
+          Add New Item
+        </Button>
       </form>
       <div
         style={{

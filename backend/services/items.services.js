@@ -45,6 +45,18 @@ async function deleteItemByName(item_name) {
   }
 }
 
+async function deleteItemById(item_id) {
+  const query = 'DELETE FROM items WHERE item_id = ?';
+  try{
+    const results = await queryPromise(query, [item_id]);
+    console.log(results);
+    return results.affectedRows;
+  } catch (err) {
+    console.log("Error in deleteItemById: ", err);
+    return 0;
+  }
+}
+
 async function editQuantity(item_name, quantity, notes) {
   const query = `UPDATE items SET quantity = ?, notes = ? WHERE item_name = ?`;
   const results = await queryPromise(query, [quantity, notes, item_name]);
@@ -57,4 +69,4 @@ async function editQuantity(item_name, quantity, notes) {
 }
 
 
-export { getAllItems, createItem, deleteItemByName, editQuantity };
+export { getAllItems, createItem, deleteItemByName, editQuantity, deleteItemById};

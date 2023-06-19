@@ -3,6 +3,7 @@ import {
   createItem,
   deleteItemByName,
   editQuantity,
+  deleteItemById,
 } from "../services/items.services.js";
 
 async function getAllItemsHandler(req, res) {
@@ -38,6 +39,18 @@ async function deleteItemByNameHandler(req, res) {
   }
 }
 
+async function deleteItemByIdHandler(req, res) {
+  try {
+    const results = await deleteItemById(req.params.item_id);
+    console.log(results);
+    res.status(200).json(results);
+  }
+  catch(err) {
+    console.error(err);
+    res.status(500).json({err: err});
+  }
+}
+
 async function editQuantityHandler(req, res) {
   try {
     const rowsUpdated = await editQuantity(
@@ -58,4 +71,5 @@ export {
   createItemHandler,
   deleteItemByNameHandler,
   editQuantityHandler,
+  deleteItemByIdHandler,
 };

@@ -90,7 +90,7 @@ const DisplayItems = (props) => {
       return (
         <tbody>
           <tr>
-            <td colSpan="3">
+            <td colSpan="4">
               <h1>No Items In Inventory</h1>
             </td>
           </tr>

@@ -30,9 +30,6 @@ function App() {
         <Route path="/headphones" element={<Headphones/>}/>
         <Route path="/announcements" element={<Announcements/>}/>
       </Routes>
-      <button type="button" onClick={checkAPI}>
-        Check API
-      </button>
     </div>
   );
 }
