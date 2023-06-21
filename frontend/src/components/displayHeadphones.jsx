@@ -1,8 +1,54 @@
 import React from "react";
-import { Button } from "@mantine/core";
+import { Button, Checkbox } from "@mantine/core";
+import axios from "axios";
 
 const DisplayHeadphones = (props) => {
   const url = "http://localhost:8000";
+
+  const handleEdit = (headphone_number, notes) => {
+    const newNotes = prompt("Please enter new notes: ", notes);
+    if (newNotes) {
+      axios
+        .put(url + "/headphones/" + headphone_number, {
+          notes: newNotes,
+        })
+        .then((res) => {
+          console.log("Notes Succesfully Updated");
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  const handleDelete = (headphone_number) => {
+    if (window.confirm("Are you sure you want to delete this headphone?")) {
+      axios
+        .delete(url + "/headphones/" + headphone_number)
+        .then((res) => {
+          console.log(res);
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  const handleCheckboxChange = (event, headphone) => {
+    const updatedHeadphone = { ...headphone, two_cords: event.target.checked };
+
+    axios
+      .put(url + "/headphones/cords/" + headphone.headphone_number, updatedHeadphone)
+      .then((res) => {
+        console.log("Checkbox Successfully Updated");
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const display = (props) => {
     const { headphones } = props;
@@ -22,7 +68,11 @@ const DisplayHeadphones = (props) => {
             </h3>
           </td>
           <td>
-            <input type="checkbox" checked={headphone.two_cords} />{" "}
+          <input
+              type="checkbox"
+              checked={headphone.two_cords}
+              onChange={(event) => handleCheckboxChange(event, headphone)}
+            />
           </td>
           <td>
             <h3>{headphone.notes}</h3>
@@ -32,10 +82,17 @@ const DisplayHeadphones = (props) => {
               variant="gradient"
               gradient={{ from: "violet", to: "teal", deg: 105 }}
               style={{ marginBottom: "2px", marginRight: "2px" }}
+              onClick={() =>
+                handleEdit(headphone.headphone_number, headphone.notes)
+              }
             >
               Edit
             </Button>
-            <Button variant="gradient" gradient={{ from: "orange", to: "red" }}>
+            <Button
+              variant="gradient"
+              gradient={{ from: "orange", to: "red" }}
+              onClick={() => handleDelete(headphone.headphone_number)}
+            >
               Delete
             </Button>
           </td>

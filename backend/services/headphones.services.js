@@ -33,18 +33,29 @@ async function createHeadphone(headphone) {
   }
 }
 
-async function editHeadphoneByNumber(headphone_number, two_cords, notes) {
-  const query = `UPDATE headphones SET two_cords = ?, notes = ? WHERE headphone_number = ?`;
+async function editHeadphoneNotesByNumber(headphone_number, notes) {
+  const query = `UPDATE headphones SET notes = ? WHERE headphone_number = ?`;
   try {
     const results = await queryPromise(query, [
-      two_cords,
       notes,
       headphone_number,
     ]);
     console.log(results);
     return results.affectedRows;
   } catch (err) {
-    console.log("Error in editHeadphoneByNumber:", err);
+    console.log("Error in editHeadphoneNotesByNumber:", err);
+    return 0; // Return 0 or an appropriate value to indicate failure
+  }
+}
+
+async function editHeadphoneCordsByNumber(headphone_number, two_cords) {
+  const query = `UPDATE headphones SET two_cords = ? WHERE headphone_number = ?`;
+  try {
+    const results = await queryPromise(query, [two_cords, headphone_number]);
+    console.log(results);
+    return results.affectedRows;
+  } catch (err) {
+    console.log("Error in editHeadphoneCordsByNumber:", err);
     return 0; // Return 0 or an appropriate value to indicate failure
   }
 }
@@ -65,5 +76,6 @@ export {
   getAllHeadphones,
   createHeadphone,
   deleteHeadphoneByNumber,
-  editHeadphoneByNumber,
+  editHeadphoneNotesByNumber,
+  editHeadphoneCordsByNumber,
 };

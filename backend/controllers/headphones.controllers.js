@@ -1,8 +1,9 @@
 import {
   getAllHeadphones,
   createHeadphone,
-  editHeadphoneByNumber,
+  editHeadphoneNotesByNumber,
   deleteHeadphoneByNumber,
+  editHeadphoneCordsByNumber,
 } from "../services/headphones.services.js";
 
 async function getAllHeadphonesHandler(req, res) {
@@ -38,12 +39,25 @@ async function deleteHeadphoneByNumberHandler(req, res) {
   }
 }
 
-async function editHeadphoneByNumberHandler(req, res) {
+async function editHeadphoneNotesByNumberHandler(req, res) {
   try {
-    const rowsUpdated = await editHeadphoneByNumber(
+    const rowsUpdated = await editHeadphoneNotesByNumber(
+      req.params.headphone_number,
+      req.body.notes,
+    );
+    console.log(rowsUpdated);
+    res.status(200).json(rowsUpdated);
+    } catch (error) {
+      console.error(error);
+      res.status(400).json({ error: error });
+    }
+}
+
+async function editHeadphoneCordsByNumberHandler(req, res) {
+  try {
+    const rowsUpdated = await editHeadphoneCordsByNumber(
       req.params.headphone_number,
       req.body.two_cords,
-      req.body.notes,
     );
     console.log(rowsUpdated);
     res.status(200).json(rowsUpdated);
@@ -57,5 +71,6 @@ export {
   getAllHeadphonesHandler,
   createHeadphoneHandler,
   deleteHeadphoneByNumberHandler,
-  editHeadphoneByNumberHandler,
+  editHeadphoneNotesByNumberHandler,
+  editHeadphoneCordsByNumberHandler,
 };

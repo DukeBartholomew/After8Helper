@@ -71,6 +71,12 @@ const Laptops = () => {
             alert("Laptop number already exists. Please enter a different laptop number.");
           } else {
             // Laptop added successfully
+            setLaptopNumber("");
+            setSerialNumber("");
+            setStatus("");
+            setModel("");
+            setNotes("");
+            window.location.reload();
             // Reset the form or perform any other necessary actions
           }
         })
@@ -138,7 +144,7 @@ const Laptops = () => {
             value={model}
             onChange={handleModelChange}
             style={{
-              width: "30%",
+              width: "20%",
               marginRight: "3px",
               marginBottom: "10px",
               borderRadius: "5px",
@@ -156,7 +162,7 @@ const Laptops = () => {
             value={status}
             onChange={handleStatusChange}
             style={{
-              width: "%30",
+              width: "30%",
               marginRight: "3px",
               marginBottom: "10px",
               borderRadius: "5px",
@@ -174,7 +180,7 @@ const Laptops = () => {
             value={notes}
             onChange={handleNotesChange}
             style={{
-              width: "%80",
+              width: "80%",
               marginRight: "3px",
               marginBottom: "10px",
               borderRadius: "5px",
@@ -185,7 +191,7 @@ const Laptops = () => {
         <Button
           type="submit"
           onClick={() => handleSubmit()}
-          style={{ marginTop: "10px", marginBottom: "10px" }}
+          style={{ marginTop: "10px", marginBottom: "20px" }}
           variant="gradient"
           gradient={{ from: "teal", to: "lime", deg: 105 }}
         >

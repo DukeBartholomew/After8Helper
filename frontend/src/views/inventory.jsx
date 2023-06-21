@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HeaderMegaMenu } from "./navbar.jsx";
-import { Button, Input, Table } from "@mantine/core";
+import { Button, Table } from "@mantine/core";
 import axios from "axios";
 import DisplayItems from "../components/displayItems.jsx";
 
@@ -32,9 +32,6 @@ const Inventory = () => {
   };
   
 
-  useEffect(() => {
-    getItems();
-  }, [sortBy]);
 
   const [items, setItems] = useState([]);
   useEffect(() => {
