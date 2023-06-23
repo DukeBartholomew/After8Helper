@@ -30,8 +30,6 @@ const Inventory = () => {
         console.log(err);
       });
   };
-  
-
 
   const [items, setItems] = useState([]);
   useEffect(() => {
@@ -81,11 +79,11 @@ const Inventory = () => {
   return (
     <>
       <HeaderMegaMenu />
-      <h1 style={{ fontWeight: "bold", fontSize:"40px" }}>Inventory</h1>
-      
+      <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>Inventory</h1>
 
-      <form style={{border: "5px"}}>
+      <form style={{ border: "5px" }}>
         <div className="create-item">
+          <label style={{ fontSize: "25px", color: "red" }}>*</label>
           <label htmlFor="item_name" style={{ fontWeight: "bold" }}>
             Item Name:{" "}
           </label>
@@ -103,8 +101,8 @@ const Inventory = () => {
               borderWidth: "1.2px",
             }}
           />
+          <label style={{ fontSize: "25px", color: "red" }}> *</label>
           <label htmlFor="quantity" style={{ fontWeight: "bold" }}>
-            {" "}
             Quantity:{" "}
           </label>
           <input
@@ -145,14 +143,18 @@ const Inventory = () => {
           Add New Item
         </Button>
       </form>
-      <div style={{marginTop:"25px"}}>
-        <label style={{fontWeight:"bold"}}>Sort By: </label>
-      <select value={sortBy} onChange={handleSortByChange} style={{marginBottom:"10px"}}>
-        <option value="item_name">Item Name (A to Z)</option>
-        <option value="-item_name">Item Name (Z to A)</option>
-        <option value="quantity">Quantity (Least to Greatest)</option>
-        <option value="-quantity">Quantity (Greatest to Least)</option>
-      </select>
+      <div style={{ marginTop: "25px" }}>
+        <label style={{ fontWeight: "bold" }}>Sort By: </label>
+        <select
+          value={sortBy}
+          onChange={handleSortByChange}
+          style={{ marginBottom: "10px" }}
+        >
+          <option value="item_name">Item Name (A to Z)</option>
+          <option value="-item_name">Item Name (Z to A)</option>
+          <option value="quantity">Quantity (Least to Greatest)</option>
+          <option value="-quantity">Quantity (Greatest to Least)</option>
+        </select>
       </div>
       <div
         style={{

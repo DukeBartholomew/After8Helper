@@ -41,15 +41,20 @@ const Headphones = () => {
         two_cords: twoCords,
         notes: notes,
       };
-  
+
       axios
         .post(url + "/headphones", requestData)
         .then((res) => {
           console.log(res);
           // Check if the response indicates that the laptop number already exists
-          if (res.data && res.data.error === "Headphone number already exists") {
+          if (
+            res.data &&
+            res.data.error === "Headphone number already exists"
+          ) {
             // Display an alert to the user
-            alert("Headphone number already exists. Please enter a different headphone number.");
+            alert(
+              "Headphone number already exists. Please enter a different headphone number."
+            );
           } else {
             // Laptop added successfully
             setHeadphoneNumber("");
@@ -58,7 +63,6 @@ const Headphones = () => {
             setNotes("");
             // Reset the form or perform any other necessary actions
             window.location.reload();
-
           }
         })
         .catch((err) => {
@@ -88,8 +92,9 @@ const Headphones = () => {
       <HeaderMegaMenu />
       <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>Headphones</h1>
       <form>
+        <label style={{ fontSize: "25px", color: "red" }}>*</label>
         <label htmlFor="headphone_number" style={{ fontWeight: "bold" }}>
-          Headphone Number:{" "}
+          Headphone #:{" "}
         </label>
         <input
           type="text"
@@ -106,8 +111,8 @@ const Headphones = () => {
             borderWidth: "1.2px",
           }}
         />
+        <label style={{ fontSize: "25px", color: "red" }}> *</label>
         <label htmlFor="serial_number" style={{ fontWeight: "bold" }}>
-          {" "}
           Serial Number:{" "}
         </label>
         <input
@@ -162,41 +167,50 @@ const Headphones = () => {
         />
       </form>
       <Button
-          type="submit"
-          onClick={() => handleSubmit()}
-          style={{ marginTop: "10px", marginBottom: "20px" }}
-          variant="gradient"
-          gradient={{ from: "teal", to: "lime", deg: 105 }}
-        >
-          Add New Headphone
-        </Button>
-      <Table
-        horizontalSpacing="x1"
-        verticalSpacing="lg"
-        fontSize="sm"
-        striped
-        highlightOnHover
-        withBorder
-        withColumnBorders
+        type="submit"
+        onClick={() => handleSubmit()}
+        style={{ marginTop: "10px", marginBottom: "20px" }}
+        variant="gradient"
+        gradient={{ from: "teal", to: "lime", deg: 105 }}
       >
-        <thead>
-          <tr>
-            <th>
-              <h2 style={{ textAlign: "center" }}>Headphone / Serial #</h2>
-            </th>
-            <th>
-              <h2 style={{ textAlign: "center" }}>Two Cords</h2>
-            </th>
-            <th>
-              <h2 style={{ textAlign: "center" }}>Notes</h2>
-            </th>
-            <th>
-              <h2 style={{ textAlign: "center" }}>Edit</h2>
-            </th>
-          </tr>
-        </thead>
-        <DisplayHeadphones headphones={headphones} />
-      </Table>
+        Add New Headphone
+      </Button>
+      <div
+        style={{
+          marginLeft: "10px",
+          marginRight: "10px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Table
+          horizontalSpacing="x1"
+          verticalSpacing="lg"
+          fontSize="sm"
+          striped
+          highlightOnHover
+          withBorder
+          withColumnBorders
+        >
+          <thead>
+            <tr>
+              <th>
+                <h2 style={{ textAlign: "center" }}>Headphone / Serial #</h2>
+              </th>
+              <th>
+                <h2 style={{ textAlign: "center" }}>Two Cords</h2>
+              </th>
+              <th>
+                <h2 style={{ textAlign: "center" }}>Notes</h2>
+              </th>
+              <th>
+                <h2 style={{ textAlign: "center" }}>Edit</h2>
+              </th>
+            </tr>
+          </thead>
+          <DisplayHeadphones headphones={headphones} />
+        </Table>
+      </div>
     </>
   );
 };

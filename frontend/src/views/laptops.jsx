@@ -4,6 +4,7 @@ import { Button, Container, Table } from "@mantine/core";
 import DisplayLaptops from "../components/displayLaptops";
 import axios from "axios";
 
+
 const Laptops = () => {
   const url = "http://localhost:8000";
 
@@ -60,7 +61,7 @@ const Laptops = () => {
         status: status,
         notes: notes,
       };
-  
+
       axios
         .post(url + "/laptops", requestData)
         .then((res) => {
@@ -68,7 +69,9 @@ const Laptops = () => {
           // Check if the response indicates that the laptop number already exists
           if (res.data && res.data.error === "Laptop number already exists") {
             // Display an alert to the user
-            alert("Laptop number already exists. Please enter a different laptop number.");
+            alert(
+              "Laptop number already exists. Please enter a different laptop number."
+            );
           } else {
             // Laptop added successfully
             setLaptopNumber("");
@@ -88,17 +91,18 @@ const Laptops = () => {
       alert("Please fill in all the required fields.");
     }
   };
-  
 
   return (
     <>
       <HeaderMegaMenu />
-      <h1 style={{ fontWeight: "bold", fontSize:"40px" }}>Laptops</h1>
+      <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>Laptops</h1>
       <Container>
         <form>
+          <label style={{fontSize:"25px", color:"red"}}>*</label>
           <label htmlFor="laptop_number" style={{ fontWeight: "bold" }}>
-            Laptop Number:{" "}
+            Laptop #:{" "}
           </label>
+
           <input
             type="text"
             id="laptop_number"
@@ -114,6 +118,7 @@ const Laptops = () => {
               borderWidth: "1.2px",
             }}
           />
+          <label style={{fontSize:"25px", color:"red"}}> *</label>
           <label htmlFor="serial_number" style={{ fontWeight: "bold" }}>
             Serial Number:{" "}
           </label>
@@ -133,6 +138,7 @@ const Laptops = () => {
             }}
           />
           <br></br>
+          <label style={{fontSize:"25px", color:"red"}}>*</label>
           <label htmlFor="model" style={{ fontWeight: "bold" }}>
             Model:{" "}
           </label>
@@ -170,6 +176,7 @@ const Laptops = () => {
             }}
           />
           <br></br>
+
           <label htmlFor="notes" style={{ fontWeight: "bold" }}>
             Notes:{" "}
           </label>
