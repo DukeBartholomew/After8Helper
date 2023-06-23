@@ -5,7 +5,7 @@ import { connection } from './mysql/connect.js';
 import itemRouter from './routes/items.routes.js';
 import laptopRouter from './routes/laptops.routes.js';
 import headphoneRouter from './routes/headphones.routes.js';
-
+import announcementRouter from './routes/announcements.routes.js';
 
 
 const app = express()
@@ -30,6 +30,7 @@ app.use('/users', userRouter);
 app.use('/items', itemRouter);
 app.use('/laptops', laptopRouter);
 app.use('/headphones', headphoneRouter);
+app.use('/announcements', announcementRouter);
 
 //error function
 app.use(function (err, req, res, next) {
@@ -38,6 +39,6 @@ app.use(function (err, req, res, next) {
   });
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`After8Helper app listening on port ${port}`)
 })
 
