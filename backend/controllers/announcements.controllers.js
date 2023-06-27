@@ -3,6 +3,8 @@ import {
   createAnnouncement,
   deleteAnnouncementById,
   editAnnouncementSituation,
+  editCompleted,
+  editUrgency,
 } from "../services/announcements.services.js";
 
 async function getAnnouncementsHandler(req, res) {
@@ -52,9 +54,39 @@ async function editAnnouncementSitationHandler(req, res) {
   }
 }
 
+async function editCompletedHandler(req, res) {
+  try {
+    const newAnnouncement = await editCompleted(
+      req.params.announcement_id,
+      req.body.completed
+    );
+    console.log(newAnnouncement);
+    res.status(201).json(newAnnouncement);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error });
+  }
+}
+
+async function editUrgencyHandler(req, res) {
+  try{
+    const newAnnouncement = await editUrgency(
+      req.params.announcement_id,
+      req.body.urgency
+    );
+    console.log(newAnnouncement);
+    res.status(201).json(newAnnouncement);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error });
+  }
+}
+
 export {
   getAnnouncementsHandler,
   createAnnouncementHandler,
   deleteAnnouncementByIdHandler,
   editAnnouncementSitationHandler,
+  editCompletedHandler,
+  editUrgencyHandler,
 };

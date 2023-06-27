@@ -59,9 +59,33 @@ async function editAnnouncementSituation(announcement_id, situation) {
   }
 }
 
+async function editCompleted(announcement_id, completed) {
+  const query = `UPDATE announcements SET completed = ? WHERE announcement_id = ?`;
+  try {
+    const results = await queryPromise(query, [completed, announcement_id]);
+    return results.affectedRows;
+  } catch(err) {
+    console.log("Error in editCompleted: ", err);
+    return 0;
+  }
+}
+
+async function editUrgency(announcement_id, urgency) {
+  const query = `UPDATE announcements SET urgency = ? WHERE announcement_id = ?`;
+  try{
+    const results = await queryPromise(query, [urgency, announcement_id]);
+    return results.affectedRows;
+  } catch(err) {
+    console.log("Error in editUrgency: ", err);
+    return 0;
+  }
+}
+
 export {
   getAnnouncements,
   createAnnouncement,
   deleteAnnouncementById,
   editAnnouncementSituation,
+  editCompleted,
+  editUrgency,
 };

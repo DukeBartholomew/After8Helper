@@ -76,7 +76,7 @@ const DisplayItems = (props) => {
             <Button
               variant="gradient"
               gradient={{ from: "violet", to: "teal", deg: 105 }}
-              style={{ marginBottom: "2px", marginRight: "2px" }}
+              style={{ marginBottom: "2px", marginRight: "2px"}}
               onClick={() => {
                 handleEdit(item.item_name, item.quantity, item.notes);
               }}
