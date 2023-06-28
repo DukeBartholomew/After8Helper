@@ -145,7 +145,7 @@ const Inventory = () => {
           Add New Item
         </Button>
       </form>
-      <div style={{ marginTop: "25px" }}>
+      <div>
         <label style={{ fontWeight: "bold" }}>Sort By: </label>
         <select
           value={sortBy}

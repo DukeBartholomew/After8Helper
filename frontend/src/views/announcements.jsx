@@ -141,7 +141,7 @@ const Announcements = () => {
           onClick={() => handleSubmit()}
           className="add-button"
         >
-          New Announcement
+          Add New Announcement
         </Button>
       </form>
 
