@@ -150,7 +150,7 @@ export function HeaderMegaMenu() {
   ));
 
   return (
-    <Box pb={120}>
+    <Box pb={0}>
       <Header height={70} px="md" style={{background:'lightGreen'}}>
         <Group position="apart" sx={{ height: '100%' }}>
           

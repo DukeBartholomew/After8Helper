@@ -62,7 +62,7 @@ const DisplayLaptops = (props) => {
             <h3>{laptop.status}</h3>
           </td>
           <td>
-            <h3>{laptop.notes}</h3>
+            <h4>{laptop.notes}</h4>
           </td>
           <td>
             <Button

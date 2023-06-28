@@ -26,10 +26,10 @@ const Announcements = () => {
 
   const handleSituationChange = (event) => {
     setSituation(event.target.value);
-  }
+  };
 
   const handleSubmit = () => {
-     if(topic && situation) {
+    if (topic && situation) {
       const requestData = {
         topic: topic,
         situation: situation,
@@ -37,24 +37,25 @@ const Announcements = () => {
         urgency: urgency,
       };
 
-      axios.post(url+"/announcements", requestData)
-      .then((res) => {
-        console.log(res);
+      axios
+        .post(url + "/announcements", requestData)
+        .then((res) => {
+          console.log(res);
           // announcement added successfully
           setSituation("");
           setUrgency("");
           setTopic("");
           // Reset the form or perform any other necessary actions
           window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-     } else {
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
       // Required fields are missing, show an alert to the user
       alert("Please fill in all the required fields.");
     }
-  }
+  };
 
   const getAnnouncements = () => {
     let allAnnouncements = [];
@@ -161,6 +162,7 @@ const Announcements = () => {
           striped
           withBorder
           withColumnBorders
+          style={{ borderWidth: "1.5px", borderColor: "darkGray" }}
         >
           <thead>
             <tr>

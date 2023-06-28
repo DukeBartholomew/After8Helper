@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { HeaderMegaMenu } from "./navbar";
+import { HeaderMegaMenu } from "./navbar.jsx";
 import { Table, Button } from "@mantine/core";
 import axios from "axios";
-import DisplayHeadphones from "../components/displayHeadphones";
+import DisplayHeadphones from "../components/displayHeadphones.jsx";
 
 const Headphones = () => {
   const url = "http://localhost:8000";
@@ -139,7 +139,7 @@ const Headphones = () => {
           id="two_cords"
           name="two_cords"
           checked={twoCords}
-          onChange={handleTwoCordsChange}
+          onChange={() => setTwoCords(!twoCords)}
           style={{
             marginRight: "3px",
             marginBottom: "10px",
@@ -147,6 +147,7 @@ const Headphones = () => {
             borderWidth: "1.2px",
           }}
         />
+
         <label htmlFor="notes" style={{ fontWeight: "bold" }}>
           {" "}
           Notes:{" "}
@@ -158,7 +159,7 @@ const Headphones = () => {
           value={notes}
           onChange={handleNotesChange}
           style={{
-            width: "60%",
+            width: "50%",
             marginRight: "3px",
             marginBottom: "10px",
             borderRadius: "5px",
@@ -191,6 +192,7 @@ const Headphones = () => {
           highlightOnHover
           withBorder
           withColumnBorders
+          style={{ borderWidth: "1.5px", borderColor: "darkGray" }}
         >
           <thead>
             <tr>

@@ -172,20 +172,22 @@ const Inventory = () => {
           highlightOnHover
           withBorder
           withColumnBorders
+          className="table"
+          style={{borderWidth:"1.5px", borderColor:"darkGray"}}
         >
           <thead>
             <tr>
               <th>
-                <h2 style={{ textAlign: "center" }}>Item Name</h2>
+                <h2 style={{ textAlign: "center", color:"black" }}>Item Name</h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center" }}>Quantity</h2>
+                <h2 style={{ textAlign: "center", color:"black"  }}>Quantity</h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center" }}>Notes</h2>
+                <h2 style={{ textAlign: "center", color:"black"  }}>Notes</h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center" }}>Edits</h2>
+                <h2 style={{ textAlign: "center", color:"black"  }}>Edits</h2>
               </th>
             </tr>
           </thead>

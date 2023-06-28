@@ -64,13 +64,13 @@ const DisplayItems = (props) => {
       const rows = items.map((item) => (
         <tr key={item.item_id}>
           <td>
-            <h3>{item.item_name}</h3>
+            <h3 >{item.item_name}</h3>
           </td>
           <td>
             <h3>{item.quantity}</h3>
           </td>
           <td>
-            <h3>{item.notes}</h3>
+            <h4>{item.notes}</h4>
           </td>
           <td>
             <Button

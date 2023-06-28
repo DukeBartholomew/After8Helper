@@ -130,7 +130,7 @@ const DisplayAnnouncements = (props) => {
             <h3>{announcement.topic}</h3>
           </td>
           <td style={{ backgroundColor: 'inherit' }}>
-            <h3>{announcement.situation}</h3>
+            <h4>{announcement.situation}</h4>
           </td>
           <td style={{ backgroundColor: 'inherit' }}>
             <input

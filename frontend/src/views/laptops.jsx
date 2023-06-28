@@ -4,7 +4,6 @@ import { Button, Container, Table } from "@mantine/core";
 import DisplayLaptops from "../components/displayLaptops";
 import axios from "axios";
 
-
 const Laptops = () => {
   const url = "http://localhost:8000";
 
@@ -98,7 +97,7 @@ const Laptops = () => {
       <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>Laptops</h1>
       <Container>
         <form>
-          <label style={{fontSize:"25px", color:"red"}}>*</label>
+          <label style={{ fontSize: "25px", color: "red" }}>*</label>
           <label htmlFor="laptop_number" style={{ fontWeight: "bold" }}>
             Laptop #:{" "}
           </label>
@@ -118,7 +117,7 @@ const Laptops = () => {
               borderWidth: "1.2px",
             }}
           />
-          <label style={{fontSize:"25px", color:"red"}}> *</label>
+          <label style={{ fontSize: "25px", color: "red" }}> *</label>
           <label htmlFor="serial_number" style={{ fontWeight: "bold" }}>
             Serial Number:{" "}
           </label>
@@ -138,7 +137,7 @@ const Laptops = () => {
             }}
           />
           <br></br>
-          <label style={{fontSize:"25px", color:"red"}}>*</label>
+          <label style={{ fontSize: "25px", color: "red" }}>*</label>
           <label htmlFor="model" style={{ fontWeight: "bold" }}>
             Model:{" "}
           </label>
@@ -221,6 +220,7 @@ const Laptops = () => {
           highlightOnHover
           withBorder
           withColumnBorders
+          style={{ borderWidth: "1.5px", borderColor: "darkGray" }}
         >
           <thead>
             <tr>

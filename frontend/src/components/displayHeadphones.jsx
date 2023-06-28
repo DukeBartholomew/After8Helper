@@ -75,7 +75,7 @@ const DisplayHeadphones = (props) => {
             />
           </td>
           <td>
-            <h3>{headphone.notes}</h3>
+            <h4>{headphone.notes}</h4>
           </td>
           <td>
             <Button
