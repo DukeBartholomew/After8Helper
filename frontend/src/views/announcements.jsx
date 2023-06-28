@@ -3,8 +3,7 @@ import { HeaderMegaMenu } from "./navbar";
 import { Table, Button } from "@mantine/core";
 import axios from "axios";
 import DisplayAnnouncements from "../components/displayAnnouncements";
-import '../css/buttonHover.css';
-
+import "../css/buttonHover.css";
 
 const Announcements = () => {
   const url = "http://localhost:8000";
@@ -53,9 +52,6 @@ const Announcements = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
-      // Required fields are missing, show an alert to the user
-      alert("Please fill in all the required fields.");
     }
   };
 
@@ -77,75 +73,77 @@ const Announcements = () => {
       <HeaderMegaMenu />
       <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>Announcements</h1>
       <form>
-        <label style={{ fontSize: "25px", color: "red" }}>*</label>
-        <label htmlFor="topic" style={{ fontWeight: "bold" }}>
-          Topic:{" "}
-        </label>
-        <input
-          type="text"
-          id="topic"
-          name="topic"
-          required
-          value={topic}
-          onChange={handleTopicChange}
-          style={{
-            width: "20%",
-            marginRight: "3px",
-            marginBottom: "10px",
-            borderRadius: "5px",
-            borderWidth: "1.2px",
-          }}
-        />
+        <div className="create-item">
+          <label style={{ fontSize: "25px", color: "red" }}>*</label>
+          <label htmlFor="topic" style={{ fontWeight: "bold" }}>
+            Topic:{" "}
+          </label>
+          <input
+            type="text"
+            id="topic"
+            name="topic"
+            required
+            value={topic}
+            onChange={handleTopicChange}
+            style={{
+              width: "20%",
+              marginRight: "3px",
+              marginBottom: "10px",
+              borderRadius: "5px",
+              borderWidth: "1.2px",
+            }}
+          />
 
-        <label htmlFor="urgency" style={{ fontWeight: "bold" }}>
-          Urgency:{" "}
-        </label>
-        <select
-          id="urgency"
-          name="urgency"
-          value={urgency}
-          onChange={handleUrgencyChange}
-          style={{
-            width: "20%",
-            marginRight: "3px",
-            marginBottom: "10px",
-            borderRadius: "5px",
-            borderWidth: "1.2px",
-          }}
+          <label htmlFor="urgency" style={{ fontWeight: "bold" }}>
+            Urgency:{" "}
+          </label>
+          <select
+            id="urgency"
+            name="urgency"
+            value={urgency}
+            onChange={handleUrgencyChange}
+            style={{
+              width: "20%",
+              marginRight: "3px",
+              marginBottom: "10px",
+              borderRadius: "5px",
+              borderWidth: "1.2px",
+            }}
+          >
+            <option value="Regular">Regular</option>
+            <option value="Mild">Mild Urgency</option>
+            <option value="Urgent">Urgent</option>
+          </select>
+          <br></br>
+
+          <label style={{ fontSize: "25px", color: "red" }}>*</label>
+          <label htmlFor="situation" style={{ fontWeight: "bold" }}>
+            Situation:{" "}
+          </label>
+          <input
+            type="text"
+            id="situation"
+            name="situation"
+            required
+            value={situation}
+            onChange={handleSituationChange}
+            style={{
+              width: "60%",
+              marginRight: "3px",
+              marginBottom: "10px",
+              borderRadius: "5px",
+              borderWidth: "1.2px",
+            }}
+          />
+        </div>
+        <Button
+          type="submit"
+          onClick={() => handleSubmit()}
+          className="add-button"
         >
-          <option value="Regular">Regular</option>
-          <option value="Mild">Mild Urgency</option>
-          <option value="Urgent">Urgent</option>
-        </select>
-        <br></br>
-
-        <label style={{ fontSize: "25px", color: "red" }}>*</label>
-        <label htmlFor="situation" style={{ fontWeight: "bold" }}>
-          Situation:{" "}
-        </label>
-        <input
-          type="text"
-          id="situation"
-          name="situation"
-          required
-          value={situation}
-          onChange={handleSituationChange}
-          style={{
-            width: "70%",
-            marginRight: "3px",
-            marginBottom: "10px",
-            borderRadius: "5px",
-            borderWidth: "1.2px",
-          }}
-        />
+          New Announcement
+        </Button>
       </form>
-      <Button
-        type="submit"
-        onClick={() => handleSubmit()}
-        className="add-button"
-      >
-        New Announcement
-      </Button>
 
       <div
         style={{
@@ -168,23 +166,25 @@ const Announcements = () => {
             <tr>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center", color:"black"  }}>Topic</h2>
+                <h2 style={{ textAlign: "center", color: "black" }}>Topic</h2>
               </th>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center", color:"black"  }}>Situation</h2>
+                <h2 style={{ textAlign: "center", color: "black" }}>
+                  Situation
+                </h2>
               </th>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center", color:"black"  }}>Done</h2>
+                <h2 style={{ textAlign: "center", color: "black" }}>Done</h2>
               </th>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center", color:"black"  }}>Urgency</h2>
+                <h2 style={{ textAlign: "center", color: "black" }}>Urgency</h2>
               </th>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center", color:"black"  }}>Edit</h2>
+                <h2 style={{ textAlign: "center", color: "black" }}>Edit</h2>
               </th>
             </tr>
           </thead>

@@ -86,9 +86,6 @@ const Laptops = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
-      // Required fields are missing, show an alert to the user
-      // alert("Please fill in all the required fields.");
     }
   };
 
@@ -96,8 +93,8 @@ const Laptops = () => {
     <>
       <HeaderMegaMenu />
       <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>Laptops</h1>
-      <Container>
-        <form>
+      <form style={{ border: "5px" }}>
+        <div className="create-item">
           <label style={{ fontSize: "25px", color: "red" }}>*</label>
           <label htmlFor="laptop_number" style={{ fontWeight: "bold" }}>
             Laptop #:{" "}
@@ -194,7 +191,7 @@ const Laptops = () => {
               borderWidth: "1.2px",
             }}
           />
-        </form>
+        </div>
         <Button
           type="submit"
           onClick={() => handleSubmit()}
@@ -202,7 +199,8 @@ const Laptops = () => {
         >
           Add New Laptop
         </Button>
-      </Container>
+      </form>
+
       <div
         style={{
           marginLeft: "10px",

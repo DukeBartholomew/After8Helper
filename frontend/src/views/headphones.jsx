@@ -3,8 +3,7 @@ import { HeaderMegaMenu } from "./navbar.jsx";
 import { Table, Button } from "@mantine/core";
 import axios from "axios";
 import DisplayHeadphones from "../components/displayHeadphones.jsx";
-import '../css/buttonHover.css';
-
+import "../css/buttonHover.css";
 
 const Headphones = () => {
   const url = "http://localhost:8000";
@@ -70,9 +69,6 @@ const Headphones = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
-      // Required fields are missing, show an alert to the user
-      alert("Please fill in all the required fields.");
     }
   };
 
@@ -94,88 +90,91 @@ const Headphones = () => {
       <HeaderMegaMenu />
       <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>Headphones</h1>
       <form>
-        <label style={{ fontSize: "25px", color: "red" }}>*</label>
-        <label htmlFor="headphone_number" style={{ fontWeight: "bold" }}>
-          Headphone #:{" "}
-        </label>
-        <input
-          type="text"
-          id="headphone_number"
-          name="headphone_number"
-          required
-          value={headphoneNumber}
-          onChange={handleHeadphoneNumberChange}
-          style={{
-            width: "10%",
-            marginRight: "3px",
-            marginBottom: "10px",
-            borderRadius: "5px",
-            borderWidth: "1.2px",
-          }}
-        />
-        <label style={{ fontSize: "25px", color: "red" }}> *</label>
-        <label htmlFor="serial_number" style={{ fontWeight: "bold" }}>
-          Serial Number:{" "}
-        </label>
-        <input
-          type="text"
-          id="serial_number"
-          name="serial_number"
-          required
-          value={serialNumber}
-          onChange={handleSerialNumberChange}
-          style={{
-            width: "10%",
-            marginRight: "3px",
-            marginBottom: "10px",
-            borderRadius: "5px",
-            borderWidth: "1.2px",
-          }}
-        />
-        <br></br>
-        <label htmlFor="two_cords" style={{ fontWeight: "bold" }}>
-          Two Cords:{" "}
-        </label>
-        <input
-          type="checkbox"
-          id="two_cords"
-          name="two_cords"
-          checked={twoCords}
-          onChange={() => setTwoCords(!twoCords)}
-          style={{
-            marginRight: "3px",
-            marginBottom: "10px",
-            borderRadius: "5px",
-            borderWidth: "1.2px",
-          }}
-        />
+        <div className="create-item">
+          <label style={{ fontSize: "25px", color: "red" }}>*</label>
+          <label htmlFor="headphone_number" style={{ fontWeight: "bold" }}>
+            Headphone #:{" "}
+          </label>
+          <input
+            type="text"
+            id="headphone_number"
+            name="headphone_number"
+            required
+            value={headphoneNumber}
+            onChange={handleHeadphoneNumberChange}
+            style={{
+              width: "10%",
+              marginRight: "3px",
+              marginBottom: "10px",
+              borderRadius: "5px",
+              borderWidth: "1.2px",
+            }}
+          />
+          <label style={{ fontSize: "25px", color: "red" }}> *</label>
+          <label htmlFor="serial_number" style={{ fontWeight: "bold" }}>
+            Serial Number:{" "}
+          </label>
+          <input
+            type="text"
+            id="serial_number"
+            name="serial_number"
+            required
+            value={serialNumber}
+            onChange={handleSerialNumberChange}
+            style={{
+              width: "10%",
+              marginRight: "3px",
+              marginBottom: "10px",
+              borderRadius: "5px",
+              borderWidth: "1.2px",
+            }}
+          />
+          <br></br>
+          <label htmlFor="two_cords" style={{ fontWeight: "bold" }}>
+            Two Cords:{" "}
+          </label>
+          <input
+            type="checkbox"
+            id="two_cords"
+            name="two_cords"
+            checked={twoCords}
+            onChange={() => setTwoCords(!twoCords)}
+            style={{
+              marginRight: "3px",
+              marginBottom: "10px",
+              borderRadius: "5px",
+              borderWidth: "1.2px",
+            }}
+          />
 
-        <label htmlFor="notes" style={{ fontWeight: "bold" }}>
-          {" "}
-          Notes:{" "}
-        </label>
-        <input
-          type="text"
-          id="notes"
-          name="notes"
-          value={notes}
-          onChange={handleNotesChange}
-          style={{
-            width: "50%",
-            marginRight: "3px",
-            marginBottom: "10px",
-            borderRadius: "5px",
-            borderWidth: "1.2px",
-          }}
-        />
+          <label htmlFor="notes" style={{ fontWeight: "bold" }}>
+            {" "}
+            Notes:{" "}
+          </label>
+          <input
+            type="text"
+            id="notes"
+            name="notes"
+            value={notes}
+            onChange={handleNotesChange}
+            style={{
+              width: "50%",
+              marginRight: "3px",
+              marginBottom: "10px",
+              borderRadius: "5px",
+              borderWidth: "1.2px",
+            }}
+          />
+        </div>
+        <Button
+          type="submit"
+          onClick={() => handleSubmit()}
+          className="add-button"
+        >
+          Add New Headphone
+        </Button>
       </form>
-      <Button
-        type="submit"
-        onClick={() => handleSubmit()}
-        className="add-button"
-      >
-        Add New Headphone
-      </Button>
+
       <div
         style={{
           marginLeft: "10px",
@@ -197,16 +196,20 @@ const Headphones = () => {
           <thead>
             <tr>
               <th>
-                <h2 style={{ textAlign: "center", color:"black"  }}>Headphone / Serial #</h2>
+                <h2 style={{ textAlign: "center", color: "black" }}>
+                  Headphone / Serial #
+                </h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center", color:"black"  }}>Two Cords</h2>
+                <h2 style={{ textAlign: "center", color: "black" }}>
+                  Two Cords
+                </h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center", color:"black"  }}>Notes</h2>
+                <h2 style={{ textAlign: "center", color: "black" }}>Notes</h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center", color:"black"  }}>Edit</h2>
+                <h2 style={{ textAlign: "center", color: "black" }}>Edit</h2>
               </th>
             </tr>
           </thead>
