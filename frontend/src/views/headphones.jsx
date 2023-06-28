@@ -3,6 +3,8 @@ import { HeaderMegaMenu } from "./navbar.jsx";
 import { Table, Button } from "@mantine/core";
 import axios from "axios";
 import DisplayHeadphones from "../components/displayHeadphones.jsx";
+import '../css/buttonHover.css';
+
 
 const Headphones = () => {
   const url = "http://localhost:8000";
@@ -170,9 +172,7 @@ const Headphones = () => {
       <Button
         type="submit"
         onClick={() => handleSubmit()}
-        style={{ marginTop: "10px", marginBottom: "20px" }}
-        variant="gradient"
-        gradient={{ from: "teal", to: "lime", deg: 105 }}
+        className="add-button"
       >
         Add New Headphone
       </Button>
@@ -197,16 +197,16 @@ const Headphones = () => {
           <thead>
             <tr>
               <th>
-                <h2 style={{ textAlign: "center" }}>Headphone / Serial #</h2>
+                <h2 style={{ textAlign: "center", color:"black"  }}>Headphone / Serial #</h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center" }}>Two Cords</h2>
+                <h2 style={{ textAlign: "center", color:"black"  }}>Two Cords</h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center" }}>Notes</h2>
+                <h2 style={{ textAlign: "center", color:"black"  }}>Notes</h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center" }}>Edit</h2>
+                <h2 style={{ textAlign: "center", color:"black"  }}>Edit</h2>
               </th>
             </tr>
           </thead>

@@ -52,7 +52,7 @@ const useStyles = createStyles((theme) => ({
     },
 
     ...theme.fn.hover({
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.green[4],
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.orange[5],
     }),
   },
 
@@ -62,7 +62,7 @@ const useStyles = createStyles((theme) => ({
     borderRadius: theme.radius.md,
 
     ...theme.fn.hover({
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.green[4],
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.orange[5],
     }),
 
     '&:active': theme.activeStyles,
@@ -151,7 +151,7 @@ export function HeaderMegaMenu() {
 
   return (
     <Box pb={0}>
-      <Header height={70} px="md" style={{background:'lightGreen'}}>
+      <Header height={70} px="md" style={{background:'#FCAE1E'}}>
         <Group position="apart" sx={{ height: '100%' }}>
           
           {/* <MantineLogo size={30} /> */}

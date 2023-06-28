@@ -3,6 +3,8 @@ import { HeaderMegaMenu } from "./navbar";
 import { Table, Button } from "@mantine/core";
 import axios from "axios";
 import DisplayAnnouncements from "../components/displayAnnouncements";
+import '../css/buttonHover.css';
+
 
 const Announcements = () => {
   const url = "http://localhost:8000";
@@ -140,9 +142,7 @@ const Announcements = () => {
       <Button
         type="submit"
         onClick={() => handleSubmit()}
-        style={{ marginTop: "10px", marginBottom: "20px" }}
-        variant="gradient"
-        gradient={{ from: "teal", to: "lime", deg: 105 }}
+        className="add-button"
       >
         New Announcement
       </Button>
@@ -168,23 +168,23 @@ const Announcements = () => {
             <tr>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center" }}>Topic</h2>
+                <h2 style={{ textAlign: "center", color:"black"  }}>Topic</h2>
               </th>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center" }}>Situation</h2>
+                <h2 style={{ textAlign: "center", color:"black"  }}>Situation</h2>
               </th>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center" }}>Done</h2>
+                <h2 style={{ textAlign: "center", color:"black"  }}>Done</h2>
               </th>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center" }}>Urgency</h2>
+                <h2 style={{ textAlign: "center", color:"black"  }}>Urgency</h2>
               </th>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center" }}>Edit</h2>
+                <h2 style={{ textAlign: "center", color:"black"  }}>Edit</h2>
               </th>
             </tr>
           </thead>

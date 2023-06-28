@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Select } from "@mantine/core";
 import axios from "axios";
+import '../css/buttonHover.css';
+
 
 const DisplayAnnouncements = (props) => {
   const url = "http://localhost:8000";
@@ -151,9 +153,7 @@ const DisplayAnnouncements = (props) => {
           </td>
           <td>
             <Button
-              variant="gradient"
-              gradient={{ from: "violet", to: "teal", deg: 105 }}
-              style={{ marginBottom: "2px", marginRight: "2px" }}
+              className="edit-button"
               onClick={() => {
                 handleEdit(
                   announcement.announcement_id,
@@ -164,8 +164,7 @@ const DisplayAnnouncements = (props) => {
               Edit
             </Button>
             <Button
-              variant="gradient"
-              gradient={{ from: "orange", to: "red" }}
+              className="delete-button"
               onClick={() => handleDelete(announcement.announcement_id)}
             >
               Delete

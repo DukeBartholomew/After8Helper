@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Checkbox } from "@mantine/core";
 import axios from "axios";
+import '../css/buttonHover.css';
+
 
 const DisplayHeadphones = (props) => {
   const url = "http://localhost:8000";
@@ -79,9 +81,7 @@ const DisplayHeadphones = (props) => {
           </td>
           <td>
             <Button
-              variant="gradient"
-              gradient={{ from: "violet", to: "teal", deg: 105 }}
-              style={{ marginBottom: "2px", marginRight: "2px" }}
+              className="edit-button"
               onClick={() =>
                 handleEdit(headphone.headphone_number, headphone.notes)
               }
@@ -89,8 +89,7 @@ const DisplayHeadphones = (props) => {
               Edit
             </Button>
             <Button
-              variant="gradient"
-              gradient={{ from: "orange", to: "red" }}
+              className="delete-button"
               onClick={() => handleDelete(headphone.headphone_number)}
             >
               Delete

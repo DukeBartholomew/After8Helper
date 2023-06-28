@@ -1,6 +1,8 @@
 import { Button, Select } from "@mantine/core";
 import React, { useState } from "react";
 import axios from "axios";
+import '../css/buttonHover.css';
+
 
 const DisplayItems = (props) => {
   const url = "http://localhost:8000";
@@ -64,7 +66,7 @@ const DisplayItems = (props) => {
       const rows = items.map((item) => (
         <tr key={item.item_id}>
           <td>
-            <h3 >{item.item_name}</h3>
+            <h3>{item.item_name}</h3>
           </td>
           <td>
             <h3>{item.quantity}</h3>
@@ -74,9 +76,7 @@ const DisplayItems = (props) => {
           </td>
           <td>
             <Button
-              variant="gradient"
-              gradient={{ from: "violet", to: "teal", deg: 105 }}
-              style={{ marginBottom: "2px", marginRight: "2px"}}
+              className="edit-button"
               onClick={() => {
                 handleEdit(item.item_name, item.quantity, item.notes);
               }}
@@ -84,8 +84,7 @@ const DisplayItems = (props) => {
               Edit
             </Button>
             <Button
-              variant="gradient"
-              gradient={{ from: "orange", to: "red" }}
+              className="delete-button"
               onClick={() => handleDelete(item.item_name)}
             >
               Delete

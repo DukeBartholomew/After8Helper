@@ -3,6 +3,7 @@ import { HeaderMegaMenu } from "./navbar";
 import { Button, Container, Table } from "@mantine/core";
 import DisplayLaptops from "../components/displayLaptops";
 import axios from "axios";
+import "../css/buttonHover.css";
 
 const Laptops = () => {
   const url = "http://localhost:8000";
@@ -87,7 +88,7 @@ const Laptops = () => {
         });
     } else {
       // Required fields are missing, show an alert to the user
-      alert("Please fill in all the required fields.");
+      // alert("Please fill in all the required fields.");
     }
   };
 
@@ -197,9 +198,7 @@ const Laptops = () => {
         <Button
           type="submit"
           onClick={() => handleSubmit()}
-          style={{ marginTop: "10px", marginBottom: "20px" }}
-          variant="gradient"
-          gradient={{ from: "teal", to: "lime", deg: 105 }}
+          className="add-button"
         >
           Add New Laptop
         </Button>
@@ -225,19 +224,21 @@ const Laptops = () => {
           <thead>
             <tr>
               <th>
-                <h2 style={{ textAlign: "center" }}>Laptop / Serial #</h2>
+                <h2 style={{ textAlign: "center", color: "black" }}>
+                  Laptop / Serial #
+                </h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center" }}>Model</h2>
+                <h2 style={{ textAlign: "center", color: "black" }}>Model</h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center" }}>Status</h2>
+                <h2 style={{ textAlign: "center", color: "black" }}>Status</h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center" }}>Notes</h2>
+                <h2 style={{ textAlign: "center", color: "black" }}>Notes</h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center" }}>Edit</h2>
+                <h2 style={{ textAlign: "center", color: "black" }}>Edit</h2>
               </th>
             </tr>
           </thead>

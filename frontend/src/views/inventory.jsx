@@ -3,6 +3,7 @@ import { HeaderMegaMenu } from "./navbar.jsx";
 import { Button, Table } from "@mantine/core";
 import axios from "axios";
 import DisplayItems from "../components/displayItems.jsx";
+import '../css/buttonHover.css';
 
 const Inventory = () => {
   const url = "http://localhost:8000";
@@ -23,6 +24,8 @@ const Inventory = () => {
           sortedItems.sort((a, b) => a.quantity - b.quantity);
         } else if (sortBy === "-quantity") {
           sortedItems.sort((a, b) => b.quantity - a.quantity);
+        } else if (sortBy === "item_name") {
+          sortedItems.sort((a, b) => a.item_name.localeCompare(b.item_name));
         }
         setItems(sortedItems);
       })
@@ -30,6 +33,7 @@ const Inventory = () => {
         console.log(err);
       });
   };
+  
 
   const [items, setItems] = useState([]);
   useEffect(() => {
@@ -79,7 +83,7 @@ const Inventory = () => {
   return (
     <>
       <HeaderMegaMenu />
-      <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>Inventory</h1>
+      <h1 style={{ fontWeight: "bolder", fontSize: "40px"}}>Inventory</h1>
 
       <form style={{ border: "5px" }}>
         <div className="create-item">
@@ -135,10 +139,8 @@ const Inventory = () => {
         </div>
         <Button
           type="submit"
+          className="add-button"
           onClick={() => handleSubmit()}
-          style={{ marginTop: "10px", marginBottom: "10px" }}
-          variant="gradient"
-          gradient={{ from: "teal", to: "lime", deg: 105 }}
         >
           Add New Item
         </Button>
