@@ -27,8 +27,8 @@ const DisplayItems = (props) => {
       "Please enter the new quantity: ",
       quantity
     );
-    const newNotes = prompt("Type to edit notes. Otherwise, click OK", notes);
     if (newQuantityAmount) {
+      const newNotes = prompt("Type to edit notes. Otherwise, click OK", notes);
       axios
         .put(url + "/items/" + item_name, {
           quantity: newQuantityAmount,
@@ -72,7 +72,7 @@ const DisplayItems = (props) => {
             <h3>{item.quantity}</h3>
           </td>
           <td>
-            <h4>{item.notes}</h4>
+            <h4 className="wrap">{item.notes}</h4>
           </td>
           <td>
             <Button
