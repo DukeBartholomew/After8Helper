@@ -2,6 +2,7 @@ import {
   getAllUsers,
   createUser,
   deleteUserByName,
+  grantAccess,
 } from "../services/users.services.js";
 
 async function getAllUsersHandler(req, res) {
@@ -37,4 +38,26 @@ async function deleteUserByNameHandler(req, res) {
   }
 }
 
-export { getAllUsersHandler, createUserHandler, deleteUserByNameHandler };
+// Define the grantAccessHandler controller method
+async function grantAccessHandler(req, res) {
+  const { _username, _password } = req.body; // Assuming username and password are sent in the request body
+  console.log(_username)
+
+  try {
+    const granted = await grantAccess(_username, _password);
+    if (granted) {
+      // Access granted
+      res.status(200).json({ message: "Access granted" });
+    } else {
+      // Access denied
+      res.status(401).json({ message: "Invalid username or password" });
+    }
+  } catch (error) {
+    // Error occurred
+    console.error("Error in grantAccessHandler:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
+export { getAllUsersHandler, createUserHandler, deleteUserByNameHandler, grantAccessHandler};
