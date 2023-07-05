@@ -60,6 +60,7 @@ async function grantAccess(_username, _password) {
     }
 
     // User found and password matches
+    console.log("Found user!")
     return true;
   } catch (err) {
     console.log("Error in finding user:", err);

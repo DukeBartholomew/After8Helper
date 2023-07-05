@@ -1,16 +1,20 @@
 import React, { useState } from "react";
+import { useDisclosure } from "@mantine/hooks";
 import { LandingNav } from "./navbar";
-import { Card, Container, Input, Button } from "@mantine/core";
+import { Card, Container, Input, Button, PasswordInput } from "@mantine/core";
 // import { hash } from "bcrypt";
 import axios from "axios";
 import "../css/buttonHover.css";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
   const url = "http://localhost:8000";
 
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -20,49 +24,51 @@ const Landing = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  
     if (username && password) {
-      // Check if username and password are provided
+      const requestData = {
+        _username: username,
+        _password: password,
+      };
   
-      try {
-        // Hash the provided password
-        const hashedPassword = await hashUserPassword(password);
+      setLoading(true);
   
-        const requestData = {
-          username: username,
-          password: hashedPassword,
-        };
-  
-        axios
-          .post(url + "/login", requestData)
-          .then((res) => {
-            // Check the response from the server
-            if (res.data.success) {
-              // User authentication successful
-              // Grant access to the website or redirect to the authenticated page
-              console.log("User authenticated");
-              // Add your logic to grant access to the website here
+      axios
+        .post(url + "/users/grant-access", requestData)
+        .then((res) => {
+          if (res.status === 200) {
+            if (res.data.message === "Access granted") {
+              console.log("Access granted");
+              navigate("/inventory");
             } else {
-              // User authentication failed
-              console.log("Authentication failed");
-              // Add your logic to handle failed authentication here
+              console.log("Access denied");
+              window.alert("Incorrect Username or Password");
+              setLoading(false); // Reset loading state to false
             }
-          })
-          .catch((err) => {
-            console.log("Error in login:", err);
-            // Add your logic to handle the error here
-          });
-      } catch (err) {
-        console.log("Error in hashing password:", err);
-        // Add your logic to handle the error here
-      }
+          } else {
+            console.log("Error occurred");
+            window.alert("Error occurred");
+            setLoading(false); // Reset loading state to false
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          window.alert("Error occurred");
+          setLoading(false); // Reset loading state to false
+        });
+    } else {
+      console.log("Username or password is empty");
+      window.alert("Please enter both username and password");
     }
   };
+  
+  
+  
+  
 
-  async function hashUserPassword(password) {
-    // const hashedPassword = await hash(password, 15);
-    // return hashedPassword;
-  }
+  const [visible, { toggle }] = useDisclosure(false);
 
   return (
     <>
@@ -76,8 +82,8 @@ const Landing = () => {
           className="login-card"
           // style={{ width: "80%" }}
         >
-          <form>
-            <h1 style={{fontSize:"40px"}}>Enter Information For Access</h1>
+          <form action="login.php" method="POST">
+            <h1 style={{ fontSize: "40px" }}>Enter Information For Access</h1>
             <div style={{ textAlign: "left" }}>
               <label style={{ fontWeight: "bold", fontSize: "20px" }}>
                 Username
@@ -96,20 +102,24 @@ const Landing = () => {
                 Password
               </label>
             </div>
-            <Input
+            <PasswordInput
               placeholder="Enter Password"
               radius="md"
               size="md"
-              required
+              visible={visible}
+              onVisibilityChange={toggle}
               onChange={handlePasswordChange}
             />
+            {loading && <p>Loading...</p>}
             <Button
               type="submit"
               size="lg"
               className="add-button"
-              style={{width:"200px", marginTop: "30px"}}
-              onClick={() => handleSubmit()}
-            >Submit</Button>
+              style={{ width: "200px", marginTop: "30px" }}
+              onClick={handleSubmit}
+            >
+              Submit
+            </Button>
           </form>
         </Card>
       </Container>

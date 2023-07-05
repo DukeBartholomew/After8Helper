@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HeaderMegaMenu } from "./navbar";
-import { Button, Container, Table } from "@mantine/core";
+import { Button, Table } from "@mantine/core";
 import DisplayLaptops from "../components/displayLaptops";
 import axios from "axios";
 import "../css/buttonHover.css";
@@ -233,7 +233,7 @@ const Laptops = () => {
                 <h2 style={{ textAlign: "center", color: "black" }}>Status</h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center", color: "black" }}>Notes</h2>
+                <h2 style={{ textAlign: "center", color: "black"}}>Notes</h2>
               </th>
               <th>
                 <h2 style={{ textAlign: "center", color: "black" }}>Edit</h2>

@@ -40,8 +40,10 @@ async function deleteUserByNameHandler(req, res) {
 
 // Define the grantAccessHandler controller method
 async function grantAccessHandler(req, res) {
-  const { _username, _password } = req.body; // Assuming username and password are sent in the request body
+  const _username = req.body._username;
+  const _password = req.body._password; // Assuming username and password are sent in the request body
   console.log(_username)
+
 
   try {
     const granted = await grantAccess(_username, _password);
@@ -50,7 +52,8 @@ async function grantAccessHandler(req, res) {
       res.status(200).json({ message: "Access granted" });
     } else {
       // Access denied
-      res.status(401).json({ message: "Invalid username or password" });
+      // res.status(201).json({ message: "Invalid username or password" });
+      console.log("Invalid Username or Password")
     }
   } catch (error) {
     // Error occurred

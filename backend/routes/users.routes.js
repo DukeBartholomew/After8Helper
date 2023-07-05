@@ -11,7 +11,7 @@ const userRouter = Router();
 userRouter.get("/", getAllUsersHandler);
 userRouter.post("/", createUserHandler);
 userRouter.delete("/:_username", deleteUserByNameHandler);
-userRouter.post('/grant-access', grantAccessHandler);
+userRouter.post("/grant-access", grantAccessHandler);
 
 
 export default userRouter;

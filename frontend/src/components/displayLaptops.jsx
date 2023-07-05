@@ -64,7 +64,7 @@ const DisplayLaptops = (props) => {
             <h4>{laptop.status}</h4>
           </td>
           <td>
-            <h4>{laptop.notes}</h4>
+            <h4 style={{wordWrap:"breakWord"}}>{laptop.notes}</h4>
           </td>
           <td>
             <Button

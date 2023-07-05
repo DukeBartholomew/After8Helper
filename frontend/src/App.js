@@ -1,5 +1,4 @@
 import "./App.css";
-import axios from "axios";
 import {Routes, Route} from "react-router-dom";
 import Inventory from "./views/inventory.jsx";
 import { Font } from "./components/font";
@@ -10,17 +9,7 @@ import Landing from "./views/landing";
 
 
 function App() {
-  const url = "http://localhost:8000";
-  const checkAPI = () => {
-    axios
-      .get(url + "/")
-      .then((res) => {
-        alert(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  
 
   return (
     <div className="App">
