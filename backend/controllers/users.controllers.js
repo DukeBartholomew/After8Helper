@@ -43,7 +43,7 @@ async function grantAccessHandler(req, res) {
   const _username = req.body._username;
   const _password = req.body._password; // Assuming username and password are sent in the request body
   console.log(_username)
-
+  
 
   try {
     const granted = await grantAccess(_username, _password);
@@ -54,6 +54,7 @@ async function grantAccessHandler(req, res) {
       // Access denied
       // res.status(201).json({ message: "Invalid username or password" });
       console.log("Invalid Username or Password")
+      res.status(200).json({message: "Access denied"});
     }
   } catch (error) {
     // Error occurred

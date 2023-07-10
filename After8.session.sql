@@ -36,4 +36,4 @@ CREATE TABLE IF NOT EXISTS headphones(
 );
 
 INSERT INTO users (_username, _password)
-VALUES("A8staff", "$2b$15$x9Q3rseVAn1fdwSuJ5.CMuHkZ8u7lSYUmJqa5k/b.JZhsIW6UEpcG");
+VALUES("A8staff", "$2b$15$JTgu3y4antrtAtPLQyEAM.ljMtpVqYBu/mr.7ykbh6QhdDRyn/s.S");

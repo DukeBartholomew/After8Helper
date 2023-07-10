@@ -38,7 +38,9 @@ const Landing = () => {
       axios
         .post(url + "/users/grant-access", requestData)
         .then((res) => {
+          
           if (res.status === 200) {
+            
             if (res.data.message === "Access granted") {
               console.log("Access granted");
               navigate("/inventory");
