@@ -54,7 +54,7 @@ async function deleteItemByIdHandler(req, res) {
 async function editQuantityHandler(req, res) {
   try {
     const rowsUpdated = await editQuantity(
-      req.params.item_name,
+      req.params.item_id,
       req.body.quantity,
       req.body.notes,
     );

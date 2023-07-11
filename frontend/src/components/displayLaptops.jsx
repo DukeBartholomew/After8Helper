@@ -9,8 +9,8 @@ const DisplayLaptops = (props) => {
 
   const handleEdit = (laptop_number, status, notes) => {
     const newStatus = prompt("Please enter the new status: ", status);
-    const newNotes = prompt("Type to edit notes. Otherwise, click OK", notes);
-    if (newStatus || newNotes) {
+    if (newStatus) {
+      const newNotes = prompt("Type to edit notes. Otherwise, click OK", notes);
       axios
         .put(url + "/laptops/" + laptop_number, {
           status: newStatus,
@@ -53,12 +53,12 @@ const DisplayLaptops = (props) => {
       const rows = sortedLaptops.map((laptop) => (
         <tr key={laptop.laptop_number}>
           <td>
-            <h3>
+            <h4>
               {laptop.laptop_number} / {laptop.serial_number}
-            </h3>
+            </h4>
           </td>
           <td>
-            <h3>{laptop.model}</h3>
+            <h4>{laptop.model}</h4>
           </td>
           <td>
             <h4>{laptop.status}</h4>

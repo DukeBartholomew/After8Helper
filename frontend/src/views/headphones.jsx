@@ -197,7 +197,7 @@ const Headphones = () => {
             <tr>
               <th>
                 <h2 style={{ textAlign: "center", color: "black" }}>
-                  Headphone / Serial #
+                  Headphone # / Serial #
                 </h2>
               </th>
               <th>

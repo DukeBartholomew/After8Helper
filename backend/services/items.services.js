@@ -34,9 +34,10 @@ async function createItem(item) {
 }
 
 async function deleteItemByName(item_name) {
+  const stringItem = item_name;
   const query = `DELETE FROM items WHERE item_name = ?`;
   try {
-    const results = await queryPromise(query, [item_name]);
+    const results = await queryPromise(query, [stringItem]);
     console.log(results); // Log the results object to the console for debugging
     return results.affectedRows;
   } catch (err) {
@@ -57,9 +58,9 @@ async function deleteItemById(item_id) {
   }
 }
 
-async function editQuantity(item_name, quantity, notes) {
-  const query = `UPDATE items SET quantity = ?, notes = ? WHERE item_name = ?`;
-  const results = await queryPromise(query, [quantity, notes, item_name]);
+async function editQuantity(item_id, quantity, notes) {
+  const query = `UPDATE items SET quantity = ?, notes = ? WHERE item_id = ?`;
+  const results = await queryPromise(query, [quantity, notes, item_id]);
   if (results && results.affectedRows !== undefined) {
     return results.affectedRows;
   } else {

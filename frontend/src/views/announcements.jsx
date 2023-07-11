@@ -166,25 +166,25 @@ const Announcements = () => {
             <tr>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center", color: "black" }}>Topic</h2>
+                <h3 style={{ textAlign: "center", color: "black" }}>Topic</h3>
               </th>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center", color: "black" }}>
+                <h3 style={{ textAlign: "center", color: "black" }}>
                   Situation
-                </h2>
+                </h3>
               </th>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center", color: "black" }}>Done</h2>
+                <h3 style={{ textAlign: "center", color: "black" }}>Done</h3>
               </th>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center", color: "black" }}>Urgency</h2>
+                <h3 style={{ textAlign: "center", color: "black" }}>Urgency</h3>
               </th>
               <th>
                 {" "}
-                <h2 style={{ textAlign: "center", color: "black" }}>Edit</h2>
+                <h3 style={{ textAlign: "center", color: "black" }}>Edit</h3>
               </th>
             </tr>
           </thead>

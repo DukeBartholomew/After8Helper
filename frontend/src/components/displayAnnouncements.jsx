@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Select } from "@mantine/core";
+import { Button } from "@mantine/core";
 import axios from "axios";
 import '../css/buttonHover.css';
 
@@ -35,6 +35,18 @@ const DisplayAnnouncements = (props) => {
         .catch((err) => {
           console.log(err);
         });
+    } else if (newSituation === "") {
+      axios
+        .put(url + "/announcements/" + announcement_id, {
+          situation: " ",
+        })
+        .then((res) => {
+          console.log("Situation Succesfully Updated");
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -58,19 +70,19 @@ const DisplayAnnouncements = (props) => {
       });
   };
 
-  const getRowClassName = (announcement) => {
-    if (announcement && announcement.urgency) {
-      const urgency = announcement.urgency.trim();
+  // const getRowClassName = (announcement) => {
+  //   if (announcement && announcement.urgency) {
+  //     const urgency = announcement.urgency.trim();
 
-      if (urgency.toLowerCase() === "mild") {
-        return "yellow-row";
-      } else if (urgency.toLowerCase() === "urgent") {
-        return "red-row";
-      }
-    }
+  //     if (urgency.toLowerCase() === "mild") {
+  //       return "yellow-row";
+  //     } else if (urgency.toLowerCase() === "urgent") {
+  //       return "red-row";
+  //     }
+  //   }
 
-    return "";
-  };
+  //   return "";
+  // };
 
   const handleSelectChange = (event, announcement) => {
     const updatedAnnouncement = {

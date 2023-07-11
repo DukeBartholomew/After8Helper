@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Checkbox } from "@mantine/core";
+import { Button } from "@mantine/core";
 import axios from "axios";
 import '../css/buttonHover.css';
 
@@ -13,6 +13,18 @@ const DisplayHeadphones = (props) => {
       axios
         .put(url + "/headphones/" + headphone_number, {
           notes: newNotes,
+        })
+        .then((res) => {
+          console.log("Notes Succesfully Updated");
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (newNotes===""){
+      axios
+        .put(url + "/headphones/" + headphone_number, {
+          notes: " ",
         })
         .then((res) => {
           console.log("Notes Succesfully Updated");

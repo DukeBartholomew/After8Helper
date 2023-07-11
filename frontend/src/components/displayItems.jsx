@@ -1,5 +1,5 @@
-import { Button, Select } from "@mantine/core";
-import React, { useState } from "react";
+import { Button } from "@mantine/core";
+import React, {  } from "react";
 import axios from "axios";
 import '../css/buttonHover.css';
 
@@ -8,10 +8,10 @@ const DisplayItems = (props) => {
   const url = "http://localhost:8000";
 
 
-  const handleDelete = (item_name) => {
+  const handleDelete = (item_id) => {
     if (window.confirm("Are you sure you want to delete this item?")) {
       axios
-        .delete(url + "/items/" + item_name)
+        .delete(url + "/items/id/" + item_id)
         .then((res) => {
           console.log(res);
           window.location.reload();
@@ -22,7 +22,7 @@ const DisplayItems = (props) => {
     }
   };
 
-  const handleEdit = (item_name, quantity, notes) => {
+  const handleEdit = (item_id, quantity, notes) => {
     const newQuantityAmount = prompt(
       "Please enter the new quantity: ",
       quantity
@@ -30,7 +30,7 @@ const DisplayItems = (props) => {
     if (newQuantityAmount) {
       const newNotes = prompt("Type to edit notes. Otherwise, click OK", notes);
       axios
-        .put(url + "/items/" + item_name, {
+        .put(url + "/items/" + item_id, {
           quantity: newQuantityAmount,
           notes: newNotes,
         })
@@ -66,7 +66,7 @@ const DisplayItems = (props) => {
       const rows = items.map((item) => (
         <tr key={item.item_id}>
           <td>
-            <h3>{item.item_name}</h3>
+            <h3 style={{wordWrap:"break-word"}}>{item.item_name}</h3>
           </td>
           <td>
             <h3>{item.quantity}</h3>
@@ -78,19 +78,20 @@ const DisplayItems = (props) => {
             <Button
               className="edit-button"
               onClick={() => {
-                handleEdit(item.item_name, item.quantity, item.notes);
+                handleEdit(item.item_id, item.quantity, item.notes);
               }}
             >
               Edit
             </Button>
             <Button
               className="delete-button"
-              onClick={() => handleDelete(item.item_name)}
+              onClick={() => handleDelete(item.item_id)}
             >
               Delete
             </Button>
           </td>
         </tr>
+        
       ));
       return (
         <>
