@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { LandingNav } from "./navbar";
 import { Card, Container, Input, Button, PasswordInput } from "@mantine/core";
@@ -6,6 +6,8 @@ import { Card, Container, Input, Button, PasswordInput } from "@mantine/core";
 import axios from "axios";
 import "../css/buttonHover.css";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+
 
 const Landing = () => {
   const url = "http://localhost:8000";
@@ -15,6 +17,7 @@ const Landing = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const {isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -26,23 +29,22 @@ const Landing = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
+
     if (username && password) {
       const requestData = {
         _username: username,
         _password: password,
       };
-  
+
       setLoading(true);
-  
+
       axios
         .post(url + "/users/grant-access", requestData)
         .then((res) => {
-          
           if (res.status === 200) {
-            
             if (res.data.message === "Access granted") {
               console.log("Access granted");
+              setIsAuthenticated(true);
               navigate("/inventory");
             } else {
               console.log("Access denied");
@@ -65,10 +67,6 @@ const Landing = () => {
       window.alert("Please enter both username and password");
     }
   };
-  
-  
-  
-  
 
   const [visible, { toggle }] = useDisclosure(false);
 
@@ -122,6 +120,7 @@ const Landing = () => {
             >
               Submit
             </Button>
+            {/* <div>{isAuthenticated ? 'Authenticated' : 'Not Authenticated'}</div> */}
           </form>
         </Card>
       </Container>

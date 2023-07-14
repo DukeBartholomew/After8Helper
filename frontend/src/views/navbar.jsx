@@ -159,12 +159,13 @@ export function HeaderMegaMenu() {
     </UnstyledButton>
   ));
 
+
   return (
     <Box pb={0}>
       <Header height={70} px="md" style={{ background: "#FCAE1E" }}>
         <Group position="apart" sx={{ height: "100%" }}>
           {/* <MantineLogo size={30} /> */}
-          <h1 style={{ fontSize: 24 }}>After8Helper</h1>
+          <h1 style={{ fontSize: 24 }} onClick={() => navigate("/")}>After8Helper</h1>
 
           <Group
             sx={{ height: "100%" }}

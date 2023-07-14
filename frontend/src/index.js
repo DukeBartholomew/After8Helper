@@ -5,7 +5,10 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
 
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <ColorSchemeProvider>
     <MantineProvider withGlobalStyles withNormalizeCSS>
