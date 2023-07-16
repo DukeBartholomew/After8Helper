@@ -6,7 +6,7 @@ import DisplayHeadphones from "../components/displayHeadphones.jsx";
 import "../css/buttonHover.css";
 
 const Headphones = () => {
-  const url = "http://localhost:8000";
+  const url = process.env.REACT_APP_URL;
 
   const [headphones, setHeadphones] = useState("");
   const [headphoneNumber, setHeadphoneNumber] = useState("");

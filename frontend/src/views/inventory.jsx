@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { HeaderMegaMenu } from "./navbar.jsx";
 import { Button, Table } from "@mantine/core";
 import axios from "axios";
 import DisplayItems from "../components/displayItems.jsx";
 import '../css/buttonHover.css';
+import { AuthContext } from "../context/AuthContext.jsx";
 
 const Inventory = () => {
-  const url = "http://localhost:8000";
-
+  const url = process.env.REACT_APP_URL;
   const [itemName, setItemName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [notes, setNotes] = useState("");

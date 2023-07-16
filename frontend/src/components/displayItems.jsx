@@ -5,7 +5,7 @@ import '../css/buttonHover.css';
 
 
 const DisplayItems = (props) => {
-  const url = "http://localhost:8000";
+  const url = process.env.REACT_APP_URL;
 
 
   const handleDelete = (item_id) => {

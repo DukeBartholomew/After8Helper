@@ -5,7 +5,7 @@ import '../css/buttonHover.css';
 
 
 const DisplayLaptops = (props) => {
-  const url = "http://localhost:8000";
+  const url = process.env.REACT_APP_URL;
 
   const handleEdit = (laptop_number, status, notes) => {
     const newStatus = prompt("Please enter the new status: ", status);

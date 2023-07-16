@@ -5,7 +5,7 @@ import '../css/buttonHover.css';
 
 
 const DisplayAnnouncements = (props) => {
-  const url = "http://localhost:8000";
+  const url = process.env.REACT_APP_URL;
 
   const handleDelete = (announcement_id) => {
     if (window.confirm("Are you sure you want to delete this announcement?")) {

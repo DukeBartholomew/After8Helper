@@ -5,7 +5,7 @@ import '../css/buttonHover.css';
 
 
 const DisplayHeadphones = (props) => {
-  const url = "http://localhost:8000";
+  const url = process.env.REACT_APP_URL;
 
   const handleEdit = (headphone_number, notes) => {
     const newNotes = prompt("Please enter new notes: ", notes);

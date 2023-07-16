@@ -6,7 +6,7 @@ import axios from "axios";
 import "../css/buttonHover.css";
 
 const Laptops = () => {
-  const url = "http://localhost:8000";
+  const url = process.env.REACT_APP_URL;
 
   const [laptopNumber, setLaptopNumber] = useState("");
   const [serialNumber, setSerialNumber] = useState("");

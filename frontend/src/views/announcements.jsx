@@ -6,7 +6,7 @@ import DisplayAnnouncements from "../components/displayAnnouncements";
 import "../css/buttonHover.css";
 
 const Announcements = () => {
-  const url = "http://localhost:8000";
+  const url = process.env.REACT_APP_URL;
 
   const [announcements, setAnnouncements] = useState("");
   const [topic, setTopic] = useState("");
