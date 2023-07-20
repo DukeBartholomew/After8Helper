@@ -6,7 +6,7 @@ import { Card, Container, Input, Button, PasswordInput } from "@mantine/core";
 import axios from "axios";
 import "../css/buttonHover.css";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext, useAuth } from "../context/AuthContext";
 
 
 
@@ -18,7 +18,7 @@ const Landing = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const {isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, setIsAuthenticated: handleSetIsAuthenticated } = useContext(AuthContext);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -30,44 +30,45 @@ const Landing = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+  
     if (username && password) {
       const requestData = {
         _username: username,
         _password: password,
       };
-
+  
       setLoading(true);
-
+  
       axios
-        .post(url + "/users/grant-access", requestData)
+        .post(url + '/users/grant-access', requestData)
         .then((res) => {
           if (res.status === 200) {
-            if (res.data.message === "Access granted") {
-              console.log("Access granted");
-              setIsAuthenticated(true);
-              navigate("/inventory");
+            if (res.data.message === 'Access granted') {
+              console.log('Access granted');
+              handleSetIsAuthenticated(true);
+              navigate('/inventory');
             } else {
-              console.log("Access denied");
-              window.alert("Incorrect Username or Password");
+              console.log('Access denied');
+              window.alert('Incorrect Username or Password');
               setLoading(false); // Reset loading state to false
             }
           } else {
-            console.log("Error occurred");
-            window.alert("Error occurred");
+            console.log('Error occurred');
+            window.alert('Error occurred');
             setLoading(false); // Reset loading state to false
           }
         })
         .catch((err) => {
           console.log(err);
-          window.alert("Error occurred");
+          window.alert('Error occurred');
           setLoading(false); // Reset loading state to false
         });
     } else {
-      console.log("Username or password is empty");
-      window.alert("Please enter both username and password");
+      console.log('Username or password is empty');
+      window.alert('Please enter both username and password');
     }
   };
+  
 
   const [visible, { toggle }] = useDisclosure(false);
 

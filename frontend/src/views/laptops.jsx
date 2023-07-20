@@ -14,8 +14,9 @@ const Laptops = () => {
   const [status, setStatus] = useState("");
   const [notes, setNotes] = useState("");
 
-  const [laptops, setLaptops] = useState("");
-  useEffect(() => {
+  const [laptops, setLaptops] = useState([]);
+
+ useEffect(() => {
     getLaptops();
   }, []);
 
@@ -40,12 +41,10 @@ const Laptops = () => {
   };
 
   const getLaptops = () => {
-    let allLaptops = [];
     axios
       .get(url + "/laptops")
       .then((res) => {
-        allLaptops = res.data;
-        setLaptops(allLaptops);
+        setLaptops(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -79,7 +78,8 @@ const Laptops = () => {
             setStatus("");
             setModel("");
             setNotes("");
-            window.location.reload();
+            // window.location.reload();
+            getLaptops();
             // Reset the form or perform any other necessary actions
           }
         })

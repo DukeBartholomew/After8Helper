@@ -131,7 +131,7 @@ const Headphones = () => {
           />
           <br></br>
           <label htmlFor="two_cords" style={{ fontWeight: "bold" }}>
-            Two Cords:{" "}
+            In Tech Shelves:{" "}
           </label>
           <input
             type="checkbox"
@@ -202,7 +202,7 @@ const Headphones = () => {
               </th>
               <th>
                 <h2 style={{ textAlign: "center", color: "black" }}>
-                  Two Cords
+                  In Tech Shelves
                 </h2>
               </th>
               <th>

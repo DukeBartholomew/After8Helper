@@ -1,26 +1,22 @@
-// import React from 'react';
-// import { Navigate, Route } from 'react-router-dom';
+// import React from "react";
+// import { Routes, Route, Navigate } from "react-router-dom";
+// import { AuthContext } from "../context/AuthContext";
 
-// // Utils
-
-// const PrivateRoutes = ({ component: Component, ...rest }) => {  
-//   var session_token=localStorage.getItem('token')
+// const AuthenticatedRoutes = ({ children }) => {
+//   const { isAuthenticated } = React.useContext(AuthContext);
 
 //   return (
-//     <Route {...rest} render={props => (
-//      session_token !== null ? (
-//       < Component  {...props} />
-//       ) : (
-//             <Navigate to={{
-//               pathname: '/',
-//               state: { from: props.location }
-//               }}
-//             />
-//           )
-//       )} 
-//     />
-//   )
+//     <Routes>
+//       {children.map((child) => {
+//         const { path, element } = child.props;
+//         return isAuthenticated ? (
+//           <Route key={path} path={path} element={element} />
+//         ) : (
+//           <Navigate key={path} to="/" />
+//         );
+//       })}
+//     </Routes>
+//   );
 // };
 
-
-// export default PrivateRoutes;
+// export default AuthenticatedRoutes;
