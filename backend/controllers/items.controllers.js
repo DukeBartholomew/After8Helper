@@ -44,10 +44,9 @@ async function deleteItemByIdHandler(req, res) {
     const results = await deleteItemById(req.params.item_id);
     console.log(results);
     res.status(200).json(results);
-  }
-  catch(err) {
+  } catch (err) {
     console.error(err);
-    res.status(500).json({err: err});
+    res.status(500).json({ err: err });
   }
 }
 
@@ -56,7 +55,7 @@ async function editQuantityHandler(req, res) {
     const rowsUpdated = await editQuantity(
       req.params.item_id,
       req.body.quantity,
-      req.body.notes,
+      req.body.notes
     );
     console.log(rowsUpdated);
     res.status(200).json(rowsUpdated);

@@ -9,18 +9,18 @@ const DisplayItems = (props) => {
 
 
   const handleDelete = (item_id) => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
-      axios
-        .delete(url + "/items/id/" + item_id)
-        .then((res) => {
-          console.log(res);
-          window.location.reload();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  };
+  if (window.confirm("Are you sure you want to delete this item?")) {
+    axios
+      .delete(url + "/items/id/" + item_id)
+      .then((res) => {
+        console.log(res);
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+};
 
   const handleEdit = (item_id, quantity, notes) => {
     const newQuantityAmount = prompt(

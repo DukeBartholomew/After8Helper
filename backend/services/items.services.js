@@ -15,11 +15,7 @@ async function createItem(item) {
   const { item_name, quantity, notes } = item;
   const query = `INSERT INTO items(item_name, quantity, notes) VALUES(?, ?, ?)`;
   try {
-    const results = await queryPromise(query, [
-      item_name,
-      quantity,
-      notes,
-    ]);
+    const results = await queryPromise(query, [item_name, quantity, notes]);
     const item_id = results.insertId;
     return {
       item_id,
@@ -47,8 +43,8 @@ async function deleteItemByName(item_name) {
 }
 
 async function deleteItemById(item_id) {
-  const query = 'DELETE FROM items WHERE item_id = ?';
-  try{
+  const query = "DELETE FROM items WHERE item_id = ?";
+  try {
     const results = await queryPromise(query, [item_id]);
     console.log(results);
     return results.affectedRows;
@@ -69,5 +65,10 @@ async function editQuantity(item_id, quantity, notes) {
   }
 }
 
-
-export { getAllItems, createItem, deleteItemByName, editQuantity, deleteItemById};
+export {
+  getAllItems,
+  createItem,
+  deleteItemByName,
+  editQuantity,
+  deleteItemById,
+};
