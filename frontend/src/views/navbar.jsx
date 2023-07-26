@@ -159,13 +159,14 @@ export function HeaderMegaMenu() {
     </UnstyledButton>
   ));
 
-
   return (
     <Box pb={0}>
       <Header height={70} px="md" style={{ background: "#FCAE1E" }}>
         <Group position="apart" sx={{ height: "100%" }}>
           {/* <MantineLogo size={30} /> */}
-          <h1 style={{ fontSize: 24 }} onClick={() => navigate("/")}>After8Helper</h1>
+          <h1 style={{ fontSize: 24 }} onClick={() => navigate("/")}>
+            After8Helper
+          </h1>
 
           <Group
             sx={{ height: "100%" }}
@@ -174,10 +175,24 @@ export function HeaderMegaMenu() {
           >
             <a
               style={{ fontSize: 15 }}
+              onClick={() => navigate("/announcements")}
+              className={classes.link}
+            >
+              Food
+            </a>
+            <a
+              style={{ fontSize: 15 }}
+              onClick={() => navigate("/clothing")}
+              className={classes.link}
+            >
+              Clothing
+            </a>
+            <a
+              style={{ fontSize: 15 }}
               className={classes.link}
               onClick={() => navigate("/inventory")}
             >
-              Inventory
+              Miscellaneous
             </a>
             <a
               style={{ fontSize: 15 }}
@@ -192,13 +207,6 @@ export function HeaderMegaMenu() {
               className={classes.link}
             >
               Headphones
-            </a>
-            <a
-              style={{ fontSize: 15 }}
-              onClick={() => navigate("/announcements")}
-              className={classes.link}
-            >
-              Announcements
             </a>
           </Group>
 
@@ -225,8 +233,26 @@ export function HeaderMegaMenu() {
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
           />
 
-          <a href="#" className={classes.link} onClick={() => navigate("/inventory")}>
-            Inventory
+          <a
+            href="#"
+            className={classes.link}
+            onClick={() => navigate("/announcements")}
+          >
+            Food
+          </a>
+          <a
+            href="#"
+            className={classes.link}
+            onClick={() => navigate("/clothing")}
+          >
+            Clothing
+          </a>
+          <a
+            href="#"
+            className={classes.link}
+            onClick={() => navigate("/inventory")}
+          >
+            Miscellaneous
           </a>
           {/* <UnstyledButton className={classes.link} onClick={toggleLinks}>
             <Center inline>
@@ -252,14 +278,6 @@ export function HeaderMegaMenu() {
             Headphones
           </a>
 
-          <a
-            href="#"
-            className={classes.link}
-            onClick={() => navigate("/announcements")}
-          >
-            Announcements
-          </a>
-
           <Divider
             my="sm"
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
@@ -276,7 +294,6 @@ export function HeaderMegaMenu() {
 }
 
 export function LandingNav() {
-
   const navigate = useNavigate();
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
@@ -301,7 +318,6 @@ export function LandingNav() {
     </UnstyledButton>
   ));
 
-
   return (
     <Box pb={0}>
       <Header height={70} px="md" style={{ background: "#FCAE1E" }}>
@@ -313,10 +329,7 @@ export function LandingNav() {
             sx={{ height: "100%" }}
             spacing={0}
             className={classes.hiddenMobile}
-          >
-          </Group>
-
-          
+          ></Group>
         </Group>
       </Header>
 
@@ -335,10 +348,14 @@ export function LandingNav() {
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
           />
 
-          <a href="#" className={classes.link} onClick={() => navigate("/inventory")}>
+          <a
+            href="#"
+            className={classes.link}
+            onClick={() => navigate("/inventory")}
+          >
             Inventory
           </a>
-      
+
           <a
             href="#"
             className={classes.link}

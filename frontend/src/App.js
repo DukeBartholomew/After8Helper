@@ -8,6 +8,7 @@ import Headphones from "./views/headphones.jsx";
 import Landing from "./views/landing";
 import { useState, useEffect } from "react";
 import { AuthContext, AuthProvider } from "./context/AuthContext";
+import Clothing from "./views/clothing";
 // import dotenv from 'dotenv';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
               <Route path="/laptops" element={<Laptops />} />
               <Route path="/headphones" element={<Headphones />} />
               <Route path="/announcements" element={<Announcements />} />
+              <Route path="/clothing" element={<Clothing/>}/>
             {/* </>
           )} */}
         </Routes>

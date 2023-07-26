@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { HeaderMegaMenu } from "./navbar";
 import { Table, Button } from "@mantine/core";
 import axios from "axios";
@@ -8,25 +8,52 @@ import "../css/buttonHover.css";
 const Announcements = () => {
   const url = process.env.REACT_APP_URL;
 
-  const [announcements, setAnnouncements] = useState("");
   const [topic, setTopic] = useState("");
-  const [urgency, setUrgency] = useState("");
   const [situation, setSituation] = useState("");
+  const [endResult, setEndResult] = useState("");
+  const [sortBy, setSortBy] = useState("topic"); // Default sort by food name
+
+  const [announcements, setAnnouncements] = useState([]);
+
+  const getAnnouncements = () => {
+    axios
+      .get(url + "/announcements")
+      .then((res) => {
+        let sortedItems = [...res.data];
+        if (sortBy === "-topic") {
+          sortedItems.sort((a, b) => b.topic.localeCompare(a.topic));
+        } else if (sortBy === "situation") {
+          sortedItems.sort((a, b) => a.situation - b.situation);
+        } else if (sortBy === "-situation") {
+          sortedItems.sort((a, b) => b.situation - a.situation);
+        } else if (sortBy === "topic") {
+          sortedItems.sort((a, b) => a.topic.localeCompare(b.topic));
+        }
+        setAnnouncements(sortedItems);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     getAnnouncements();
-  }, []);
+  }, [sortBy]);
 
   const handleTopicChange = (event) => {
     setTopic(event.target.value);
   };
 
-  const handleUrgencyChange = (event) => {
-    setUrgency(event.target.value);
-  };
-
   const handleSituationChange = (event) => {
     setSituation(event.target.value);
+  };
+
+  const handleNotesChange = (event) => {
+    setEndResult(event.target.value);
+  };
+
+  const handleSortByChange = (event) => {
+    setSortBy(event.target.value);
   };
 
   const handleSubmit = () => {
@@ -34,8 +61,8 @@ const Announcements = () => {
       const requestData = {
         topic: topic,
         situation: situation,
-        end_result: " ",
-        urgency: urgency,
+        end_result: endResult,
+        urgency: "regular",
       };
 
       axios
@@ -44,8 +71,8 @@ const Announcements = () => {
           console.log(res);
           // announcement added successfully
           setSituation("");
-          setUrgency("");
           setTopic("");
+          setEndResult("");
           // Reset the form or perform any other necessary actions
           window.location.reload();
         })
@@ -55,28 +82,15 @@ const Announcements = () => {
     }
   };
 
-  const getAnnouncements = () => {
-    let allAnnouncements = [];
-    axios
-      .get(url + "/announcements")
-      .then((res) => {
-        allAnnouncements = res.data;
-        setAnnouncements(allAnnouncements);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   return (
     <>
       <HeaderMegaMenu />
-      <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>Announcements</h1>
+      <h1 style={{ fontWeight: "bold", fontSize: "40px" }}>Food</h1>
       <form>
         <div className="create-item">
           <label style={{ fontSize: "25px", color: "red" }}>*</label>
           <label htmlFor="topic" style={{ fontWeight: "bold" }}>
-            Topic:{" "}
+            Item:{" "}
           </label>
           <input
             type="text"
@@ -93,32 +107,9 @@ const Announcements = () => {
               borderWidth: "1.2px",
             }}
           />
-
-          <label htmlFor="urgency" style={{ fontWeight: "bold" }}>
-            Urgency:{" "}
-          </label>
-          <select
-            id="urgency"
-            name="urgency"
-            value={urgency}
-            onChange={handleUrgencyChange}
-            style={{
-              width: "20%",
-              marginRight: "3px",
-              marginBottom: "10px",
-              borderRadius: "5px",
-              borderWidth: "1.2px",
-            }}
-          >
-            <option value="Regular">Regular</option>
-            <option value="Mild">Mild Urgency</option>
-            <option value="Urgent">Urgent</option>
-          </select>
-          <br></br>
-
           <label style={{ fontSize: "25px", color: "red" }}>*</label>
-          <label htmlFor="situation" style={{ fontWeight: "bold" }}>
-            Situation:{" "}
+          <label htmlFOr="situation" style={{ fontWeight: "bold" }}>
+            Quantity:{" "}
           </label>
           <input
             type="text"
@@ -127,6 +118,24 @@ const Announcements = () => {
             required
             value={situation}
             onChange={handleSituationChange}
+            style={{
+              width: "20%",
+              marginRight: "3px",
+              marginBottom: "10px",
+              borderRadius: "5px",
+              borderWidth: "1.2px",
+            }}
+          />
+          <br></br>
+          <label htmlFor="end_result" style={{ fontWeight: "bold" }}>
+            Notes:{" "}
+          </label>
+          <input
+            type="text"
+            id="end_result"
+            name="end_result"
+            value={endResult}
+            onChange={handleNotesChange}
             style={{
               width: "60%",
               marginRight: "3px",
@@ -141,9 +150,22 @@ const Announcements = () => {
           onClick={() => handleSubmit()}
           className="add-button"
         >
-          Add New Announcement
+          Add New Food Item
         </Button>
       </form>
+      <div>
+        <label style={{ fontWeight: "bold" }}>Sort By: </label>
+        <select
+          value={sortBy}
+          onChange={handleSortByChange}
+          style={{ marginBottom: "10px" }}
+        >
+          <option value="topic">Food Name (A to Z)</option>
+          <option value="-topic">Food Name (Z to A)</option>
+          <option value="situation">Quantity (Least to Greatest)</option>
+          <option value="-situation">Quantity (Greatest to Least)</option>
+        </select>
+      </div>
 
       <div
         style={{
@@ -166,21 +188,17 @@ const Announcements = () => {
             <tr>
               <th>
                 {" "}
-                <h3 style={{ textAlign: "center", color: "black" }}>Topic</h3>
+                <h3 style={{ textAlign: "center", color: "black" }}>Food Item</h3>
               </th>
               <th>
                 {" "}
                 <h3 style={{ textAlign: "center", color: "black" }}>
-                  Situation
+                  Quantity
                 </h3>
               </th>
               <th>
                 {" "}
-                <h3 style={{ textAlign: "center", color: "black" }}>Done</h3>
-              </th>
-              <th>
-                {" "}
-                <h3 style={{ textAlign: "center", color: "black" }}>Urgency</h3>
+                <h3 style={{ textAlign: "center", color: "black" }}>Notes</h3>
               </th>
               <th>
                 {" "}

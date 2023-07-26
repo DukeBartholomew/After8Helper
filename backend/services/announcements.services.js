@@ -48,10 +48,10 @@ async function deleteAnnouncementById(announcement_id) {
   }
 }
 
-async function editAnnouncementSituation(announcement_id, situation) {
-  const query = `UPDATE announcements SET situation = ? WHERE announcement_id = ?`;
+async function editAnnouncementSituation(announcement_id, situation, end_result) {
+  const query = `UPDATE announcements SET situation = ?, end_result = ? WHERE announcement_id = ?`;
   try {
-    const results = await queryPromise(query, [situation, announcement_id]);
+    const results = await queryPromise(query, [situation, end_result, announcement_id]);
     return results.affectedRows;
   } catch (err) {
     console.log("Error in editAnnouncementSitation: ", err);

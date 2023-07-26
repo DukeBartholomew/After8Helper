@@ -24,6 +24,21 @@ const DisplayLaptops = (props) => {
           console.log(err);
         });
     }
+    else if (newStatus === "") {
+      const newNotes = prompt("Type to edit notes. Otherwise, click OK", notes);
+      axios
+        .put(url + "/laptops/" + laptop_number, {
+          status: "",
+          notes: newNotes,
+        })
+        .then((res) => {
+          console.log("Quantity Succesfully Updated");
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const handleDelete = (laptop_number) => {

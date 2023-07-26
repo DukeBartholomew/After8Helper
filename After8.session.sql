@@ -28,6 +28,10 @@ CREATE TABLE IF NOT EXISTS announcements(
     urgency VARCHAR(50)
 
 );
+CREATE TABLE IF NOT EXISTS clothing(
+    clothing_id INT AUTO_INCREMENT PRIMARY KEY,
+    
+);
 CREATE TABLE IF NOT EXISTS headphones(
     headphone_number INT PRIMARY KEY,
     serial_number VARCHAR(50) NOT NULL,

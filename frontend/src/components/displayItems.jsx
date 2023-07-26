@@ -42,6 +42,21 @@ const DisplayItems = (props) => {
           console.log(err);
         });
     }
+    else if(newQuantityAmount === "") {
+      const newNotes = prompt("Type to edit notes. Otherwise, click OK", notes);
+      axios
+        .put(url + "/items/" + item_id, {
+          quantity: "",
+          notes: newNotes,
+        })
+        .then((res) => {
+          console.log("Quantity Succesfully Updated");
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const display = (props) => {

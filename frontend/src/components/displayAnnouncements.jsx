@@ -1,14 +1,13 @@
 import React from "react";
 import { Button } from "@mantine/core";
 import axios from "axios";
-import '../css/buttonHover.css';
-
+import "../css/buttonHover.css";
 
 const DisplayAnnouncements = (props) => {
   const url = process.env.REACT_APP_URL;
 
   const handleDelete = (announcement_id) => {
-    if (window.confirm("Are you sure you want to delete this announcement?")) {
+    if (window.confirm("Are you sure you want to delete this item?")) {
       axios
         .delete(url + "/announcements/" + announcement_id)
         .then((res) => {
@@ -21,12 +20,17 @@ const DisplayAnnouncements = (props) => {
     }
   };
 
-  const handleEdit = (announcement_id, situation) => {
-    const newSituation = prompt("Please enter the new situation: ", situation);
+  const handleEdit = (announcement_id, situation, end_result) => {
+    const newSituation = prompt("Please enter the new quantity: ", situation);
     if (newSituation) {
+      const newNotes = prompt(
+        "Type to edit notes. Otherwise, click OK",
+        end_result
+      );
       axios
         .put(url + "/announcements/" + announcement_id, {
           situation: newSituation,
+          end_result: newNotes,
         })
         .then((res) => {
           console.log("Situation Succesfully Updated");
@@ -36,9 +40,15 @@ const DisplayAnnouncements = (props) => {
           console.log(err);
         });
     } else if (newSituation === "") {
+      const newNotes = prompt(
+        "Type to edit notes. Otherwise, click OK",
+        end_result
+      );
+
       axios
         .put(url + "/announcements/" + announcement_id, {
           situation: " ",
+          end_result: newNotes,
         })
         .then((res) => {
           console.log("Situation Succesfully Updated");
@@ -50,59 +60,6 @@ const DisplayAnnouncements = (props) => {
     }
   };
 
-  const handleCheckboxChange = (event, announcement) => {
-    const updatedAnnouncement = {
-      ...announcement,
-      completed: event.target.checked,
-    };
-
-    axios
-      .put(
-        url + "/announcements/completed/" + announcement.announcement_id,
-        updatedAnnouncement
-      )
-      .then((res) => {
-        console.log("Checkbox Successfully Updated");
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // const getRowClassName = (announcement) => {
-  //   if (announcement && announcement.urgency) {
-  //     const urgency = announcement.urgency.trim();
-
-  //     if (urgency.toLowerCase() === "mild") {
-  //       return "yellow-row";
-  //     } else if (urgency.toLowerCase() === "urgent") {
-  //       return "red-row";
-  //     }
-  //   }
-
-  //   return "";
-  // };
-
-  const handleSelectChange = (event, announcement) => {
-    const updatedAnnouncement = {
-      ...announcement,
-      urgency: event.target.value,
-    };
-
-    axios
-      .put(
-        url + "/announcements/urgency/" + announcement.announcement_id,
-        updatedAnnouncement
-      )
-      .then((res) => {
-        console.log("Select Successfully Updated");
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   const display = (props) => {
     const { announcements } = props;
@@ -130,46 +87,25 @@ const DisplayAnnouncements = (props) => {
 
     if (announcements.length > 0) {
       const rows = sortedAnnouncements.map((announcement) => (
-        <tr
-          key={announcement.announcement_id}
-          style={
-            announcement.urgency === "Mild"
-              ? { backgroundColor: "rgb(243, 243, 190)" }
-              : announcement.urgency === "Urgent"
-              ? { backgroundColor: "rgb(227, 178, 178)" }
-              : {}
-          }
-        >
-          <td style={{ backgroundColor: 'inherit' }}>
+        <tr key={announcement.announcement_id}>
+          <td style={{ backgroundColor: "inherit" }}>
             <h3>{announcement.topic}</h3>
           </td>
-          <td style={{ backgroundColor: 'inherit' }}>
+          <td style={{ backgroundColor: "inherit" }}>
             <h4>{announcement.situation}</h4>
           </td>
-          <td style={{ backgroundColor: 'inherit' }}>
-            <input
-              type="checkbox"
-              checked={announcement.completed}
-              onChange={(event) => handleCheckboxChange(event, announcement)}
-            />{" "}
+          <td style={{ backgroundColor: "inherit" }}>
+            <h5>{announcement.end_result}</h5>
           </td>
-          <td style={{ backgroundColor: 'inherit' }}>
-            <select
-              value={announcement.urgency}
-              onChange={(event) => handleSelectChange(event, announcement)}
-            >
-              <option style={{textAlign:"center"}} value="Regular">Regular</option>
-              <option style={{textAlign:"center"}} value="Mild">Mild</option>
-              <option style={{textAlign:"center"}} value="Urgent">Urgent</option>
-            </select>
-          </td>
+
           <td>
             <Button
               className="edit-button"
               onClick={() => {
                 handleEdit(
                   announcement.announcement_id,
-                  announcement.situation
+                  announcement.situation,
+                  announcement.end_result
                 );
               }}
             >

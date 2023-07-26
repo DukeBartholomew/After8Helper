@@ -44,7 +44,8 @@ async function editAnnouncementSitationHandler(req, res) {
   try {
     const newAnnouncement = await editAnnouncementSituation(
       req.params.announcement_id,
-      req.body.situation
+      req.body.situation,
+      req.body.end_result,
     );
     console.log(newAnnouncement);
     res.status(201).json(newAnnouncement);

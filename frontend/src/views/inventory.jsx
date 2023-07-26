@@ -28,6 +28,7 @@ const Inventory = () => {
           sortedItems.sort((a, b) => a.item_name.localeCompare(b.item_name));
         }
         setItems(sortedItems);
+
       })
       .catch((err) => {
         console.log(err);
