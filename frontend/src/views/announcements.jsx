@@ -58,6 +58,15 @@ const Announcements = () => {
 
   const handleSubmit = () => {
     if (topic && situation) {
+
+      const parsedQuantity = parseInt(situation, 10);
+
+      if (!Number.isInteger(parsedQuantity)) {
+        // Show a prompt to the user if quantity is not an integer
+        alert("Please enter a valid integer value for quantity.");
+        return; // Exit the function, don't proceed with the submission
+      }
+
       const requestData = {
         topic: topic,
         situation: situation,

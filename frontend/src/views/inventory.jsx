@@ -60,6 +60,14 @@ const Inventory = () => {
   const handleSubmit = () => {
     if (itemName && quantity) {
       // Check if required fields are not empty
+      const parsedQuantity = parseInt(quantity, 10);
+
+      if (!Number.isInteger(parsedQuantity)) {
+        // Show a prompt to the user if quantity is not an integer
+        alert("Please enter a valid integer value for quantity.");
+        return; // Exit the function, don't proceed with the submission
+      }
+      
       const requestData = {
         item_name: itemName,
         quantity: quantity,
@@ -190,7 +198,7 @@ const Inventory = () => {
                 <h2 style={{ textAlign: "center", color:"black"  }}>Notes</h2>
               </th>
               <th>
-                <h2 style={{ textAlign: "center", color:"black"  }}>Edits</h2>
+                <h2 style={{ textAlign: "center", color:"black"  }}>Edit</h2>
               </th>
             </tr>
           </thead>

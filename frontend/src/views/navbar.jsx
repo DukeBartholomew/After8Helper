@@ -175,13 +175,6 @@ export function HeaderMegaMenu() {
           >
             <a
               style={{ fontSize: 15 }}
-              onClick={() => navigate("/announcements")}
-              className={classes.link}
-            >
-              Food
-            </a>
-            <a
-              style={{ fontSize: 15 }}
               onClick={() => navigate("/clothing")}
               className={classes.link}
             >
@@ -189,10 +182,17 @@ export function HeaderMegaMenu() {
             </a>
             <a
               style={{ fontSize: 15 }}
+              onClick={() => navigate("/announcements")}
               className={classes.link}
-              onClick={() => navigate("/inventory")}
             >
-              Miscellaneous
+              Food
+            </a>
+            <a
+              style={{ fontSize: 15 }}
+              onClick={() => navigate("/headphones")}
+              className={classes.link}
+            >
+              Headphones
             </a>
             <a
               style={{ fontSize: 15 }}
@@ -203,10 +203,10 @@ export function HeaderMegaMenu() {
             </a>
             <a
               style={{ fontSize: 15 }}
-              onClick={() => navigate("/headphones")}
               className={classes.link}
+              onClick={() => navigate("/inventory")}
             >
-              Headphones
+              Miscellaneous
             </a>
           </Group>
 
@@ -236,6 +236,13 @@ export function HeaderMegaMenu() {
           <a
             href="#"
             className={classes.link}
+            onClick={() => navigate("/clothing")}
+          >
+            Clothing
+          </a>
+          <a
+            href="#"
+            className={classes.link}
             onClick={() => navigate("/announcements")}
           >
             Food
@@ -243,9 +250,16 @@ export function HeaderMegaMenu() {
           <a
             href="#"
             className={classes.link}
-            onClick={() => navigate("/clothing")}
+            onClick={() => navigate("/headphones")}
           >
-            Clothing
+            Headphones
+          </a>
+          <a
+            href="#"
+            className={classes.link}
+            onClick={() => navigate("/laptops")}
+          >
+            Laptops
           </a>
           <a
             href="#"
@@ -263,20 +277,6 @@ export function HeaderMegaMenu() {
             </Center>
           </UnstyledButton>
           <Collapse in={linksOpened}>{links}</Collapse> */}
-          <a
-            href="#"
-            className={classes.link}
-            onClick={() => navigate("/laptops")}
-          >
-            Laptops
-          </a>
-          <a
-            href="#"
-            className={classes.link}
-            onClick={() => navigate("/headphones")}
-          >
-            Headphones
-          </a>
 
           <Divider
             my="sm"

@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS users(
 CREATE TABLE IF NOT EXISTS items(
     item_id INT AUTO_INCREMENT PRIMARY KEY,
     item_name VARCHAR(150) NOT NULL,
-    quantity VARCHAR(150) NOT NULL,
+    quantity INT NOT NULL,
     notes VARCHAR(1000)
 );
 CREATE TABLE IF NOT EXISTS laptops(
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS laptops(
 CREATE TABLE IF NOT EXISTS announcements(
     announcement_id INT AUTO_INCREMENT PRIMARY KEY,
     topic VARCHAR(150) NOT NULL,
-    situation VARCHAR(1000) NOT NULL,
+    situation INT NOT NULL,
     end_result VARCHAR(1000),
     completed BOOLEAN NOT NULL DEFAULT FALSE,
     urgency VARCHAR(50)
