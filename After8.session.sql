@@ -30,7 +30,8 @@ CREATE TABLE IF NOT EXISTS announcements(
 );
 CREATE TABLE IF NOT EXISTS clothing(
     clothing_id INT AUTO_INCREMENT PRIMARY KEY,
-    
+    article VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS headphones(
     headphone_number INT PRIMARY KEY,
