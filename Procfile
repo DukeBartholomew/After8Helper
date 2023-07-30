@@ -1,2 +1,2 @@
-web: npm client
-server: npm start
+web: cd frontend && npm i && npm start
+server: cd backend && npm i && npm run dev
