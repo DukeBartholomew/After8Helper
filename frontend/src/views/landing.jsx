@@ -1,12 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { LandingNav } from "./navbar";
 import { Card, Container, Input, Button, PasswordInput } from "@mantine/core";
-// import { hash } from "bcrypt";
 import axios from "axios";
 import "../css/buttonHover.css";
 import { useNavigate } from "react-router-dom";
-import { AuthContext, useAuth } from "../context/AuthContext";
 
 
 
@@ -18,7 +16,7 @@ const Landing = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const { isAuthenticated, setIsAuthenticated: handleSetIsAuthenticated } = useContext(AuthContext);
+  // const { isAuthenticated, setIsAuthenticated: handleSetIsAuthenticated } = useContext(AuthContext);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -45,8 +43,8 @@ const Landing = () => {
           if (res.status === 200) {
             if (res.data.message === 'Access granted') {
               console.log('Access granted');
-              handleSetIsAuthenticated(true);
-              navigate('/inventory');
+              // handleSetIsAuthenticated(true);
+              navigate('/clothing');
             } else {
               console.log('Access denied');
               window.alert('Incorrect Username or Password');

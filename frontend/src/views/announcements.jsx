@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { HeaderMegaMenu } from "./navbar";
 import { Table, Button } from "@mantine/core";
 import axios from "axios";
@@ -13,13 +13,14 @@ const Announcements = () => {
   const [endResult, setEndResult] = useState("");
   const [sortBy, setSortBy] = useState("topic"); // Default sort by food name
 
-  const [announcements, setAnnouncements] = useState([]);
 
   const getAnnouncements = () => {
     axios
       .get(url + "/announcements")
       .then((res) => {
         let sortedItems = [...res.data];
+        console.log("Sorted items: ", sortedItems);
+        console.log("Sort By: ", sortBy);
         if (sortBy === "-topic") {
           sortedItems.sort((a, b) => b.topic.localeCompare(a.topic));
         } else if (sortBy === "situation") {
@@ -30,12 +31,14 @@ const Announcements = () => {
           sortedItems.sort((a, b) => a.topic.localeCompare(b.topic));
         }
         setAnnouncements(sortedItems);
+        console.log("Announcements:", sortedItems)
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  const [announcements, setAnnouncements] = useState([]);
   useEffect(() => {
     getAnnouncements();
   }, [sortBy]);
@@ -58,18 +61,19 @@ const Announcements = () => {
 
   const handleSubmit = () => {
     if (topic && situation) {
-
-      const parsedQuantity = parseInt(situation, 10);
-
-      if (!Number.isInteger(parsedQuantity)) {
-        // Show a prompt to the user if quantity is not an integer
+      const numericQuantity = situation.match(/\d+/);
+  
+      if (!numericQuantity || isNaN(parseInt(numericQuantity[0], 10))) {
+        // Show a prompt to the user if the numeric part is not an integer
         alert("Please enter a valid integer value for quantity.");
         return; // Exit the function, don't proceed with the submission
       }
+  
+      const parsedQuantity = parseInt(numericQuantity[0], 10);
 
       const requestData = {
         topic: topic,
-        situation: situation,
+        situation: parsedQuantity,
         end_result: endResult,
         urgency: "regular",
       };
@@ -117,7 +121,7 @@ const Announcements = () => {
             }}
           />
           <label style={{ fontSize: "25px", color: "red" }}>*</label>
-          <label htmlFOr="situation" style={{ fontWeight: "bold" }}>
+          <label htmlFor="situation" style={{ fontWeight: "bold" }}>
             Quantity:{" "}
           </label>
           <input
@@ -197,7 +201,9 @@ const Announcements = () => {
             <tr>
               <th>
                 {" "}
-                <h3 style={{ textAlign: "center", color: "black" }}>Food Item</h3>
+                <h3 style={{ textAlign: "center", color: "black" }}>
+                  Food Item
+                </h3>
               </th>
               <th>
                 {" "}

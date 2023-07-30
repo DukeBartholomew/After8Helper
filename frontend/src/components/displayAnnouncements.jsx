@@ -69,7 +69,7 @@ const DisplayAnnouncements = (props) => {
         <tbody>
           <tr>
             <td colSpan="5">
-              <h1>No Announcements</h1>
+              <h1>No Food In Inventory</h1>
             </td>
           </tr>
         </tbody>
@@ -77,16 +77,16 @@ const DisplayAnnouncements = (props) => {
     }
     console.log(announcements);
 
-    const sortedAnnouncements = announcements.sort((a, b) => {
-      const topicA = a.topic.toLowerCase();
-      const topicB = b.topic.toLowerCase();
-      if (topicA < topicB) return -1;
-      if (topicA > topicB) return 1;
-      return 0;
-    });
+    // const sortedAnnouncements = announcements.sort((a, b) => {
+    //   const topicA = a.topic.toLowerCase();
+    //   const topicB = b.topic.toLowerCase();
+    //   if (topicA < topicB) return -1;
+    //   if (topicA > topicB) return 1;
+    //   return 0;
+    // });
 
     if (announcements.length > 0) {
-      const rows = sortedAnnouncements.map((announcement) => (
+      const rows = announcements.map((announcement) => (
         <tr key={announcement.announcement_id}>
           <td style={{ backgroundColor: "inherit" }}>
             <h3>{announcement.topic}</h3>

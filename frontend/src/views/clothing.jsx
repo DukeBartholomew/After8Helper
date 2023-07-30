@@ -10,7 +10,7 @@ const Clothing = () => {
   const [clothes, setClothes] = useState([]);
   const [article, setArticle] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [sortBy, setSortBy] = useState("article"); // Default sort by clothing article
+  // const [sortBy, setSortBy] = useState("article"); // Default sort by clothing article
 
 
   const getClothes = () => {
@@ -29,16 +29,19 @@ const Clothing = () => {
   const handleSubmit = () => {
     if (article && quantity) {
       // Check if required fields are not empty
-      const parsedQuantity = parseInt(quantity, 10);
-
-      if (!Number.isInteger(parsedQuantity)) {
-        // Show a prompt to the user if quantity is not an integer
+      const numericQuantity = quantity.match(/\d+/);
+  
+      if (!numericQuantity || isNaN(parseInt(numericQuantity[0], 10))) {
+        // Show a prompt to the user if the numeric part is not an integer
         alert("Please enter a valid integer value for quantity.");
         return; // Exit the function, don't proceed with the submission
       }
+  
+      const parsedQuantity = parseInt(numericQuantity[0], 10);
+
       const requestData = {
         article: article,
-        quantity: quantity,
+        quantity: parsedQuantity,
       };
 
       axios
@@ -57,7 +60,7 @@ const Clothing = () => {
 
   useEffect(() => {
     getClothes();
-  },[sortBy]);
+  },[]);
 
   const handleArticleChange = (event) => {
     setArticle(event.target.value);
@@ -67,9 +70,9 @@ const Clothing = () => {
     setQuantity(event.target.value);
   }
 
-  const handleSortByChange = (event) => {
-    setSortBy(event.target.value);
-  };
+  // const handleSortByChange = (event) => {
+  //   setSortBy(event.target.value);
+  // };
 
   return (
     <>

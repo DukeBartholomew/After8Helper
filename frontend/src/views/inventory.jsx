@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HeaderMegaMenu } from "./navbar.jsx";
 import { Button, Table } from "@mantine/core";
 import axios from "axios";
 import DisplayItems from "../components/displayItems.jsx";
 import '../css/buttonHover.css';
-import { AuthContext } from "../context/AuthContext.jsx";
 
 const Inventory = () => {
   const url = process.env.REACT_APP_URL;
@@ -59,21 +58,23 @@ const Inventory = () => {
 
   const handleSubmit = () => {
     if (itemName && quantity) {
-      // Check if required fields are not empty
-      const parsedQuantity = parseInt(quantity, 10);
-
-      if (!Number.isInteger(parsedQuantity)) {
-        // Show a prompt to the user if quantity is not an integer
+      // Extract the numeric part from the quantity input using a regular expression
+      const numericQuantity = quantity.match(/\d+/);
+  
+      if (!numericQuantity || isNaN(parseInt(numericQuantity[0], 10))) {
+        // Show a prompt to the user if the numeric part is not an integer
         alert("Please enter a valid integer value for quantity.");
         return; // Exit the function, don't proceed with the submission
       }
-      
+  
+      const parsedQuantity = parseInt(numericQuantity[0], 10);
+  
       const requestData = {
         item_name: itemName,
-        quantity: quantity,
+        quantity: parsedQuantity,
         notes: notes,
       };
-
+  
       axios
         .post(url + "/items", requestData)
         .then((res) => {
@@ -88,11 +89,12 @@ const Inventory = () => {
         });
     }
   };
+  
 
   return (
     <>
       <HeaderMegaMenu />
-      <h1 style={{ fontWeight: "bolder", fontSize: "40px"}}>Inventory</h1>
+      <h1 style={{ fontWeight: "bolder", fontSize: "40px"}}>Miscellaneous Items</h1>
 
       <form style={{ border: "5px" }}>
         <div className="create-item">
