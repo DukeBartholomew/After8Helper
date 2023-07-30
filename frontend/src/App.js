@@ -1,12 +1,12 @@
 import "./App.css";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Inventory from "./views/inventory.jsx";
 import { Font } from "./components/font";
 import Laptops from "./views/laptops.jsx";
 import Announcements from "./views/announcements.jsx";
 import Headphones from "./views/headphones.jsx";
 import Landing from "./views/landing";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AuthContext, AuthProvider } from "./context/AuthContext";
 import Clothing from "./views/clothing";
 // import dotenv from 'dotenv';
